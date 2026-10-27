@@ -328,7 +328,7 @@
             </div>
         </div>
 
-        <!-- Professional Centered Qibla Compass Card -->
+        <!-- Professional Kaaba-Tipped Qibla Compass Card -->
         <div class="card" style="text-align: center; background: linear-gradient(135deg, var(--card-bg), var(--bg));">
             <h3 style="margin-bottom: 4px; font-size: 1.1rem; color: var(--primary);">Qibla Direction</h3>
             <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px;">Pointing towards the Kaaba, Mecca</p>
@@ -347,19 +347,21 @@
                     <span style="position: absolute; left: 12px; font-weight: 800; font-size: 0.8rem; color: var(--text-muted);">W</span>
                     
                     <!-- Degree Ticks -->
-                    <div style="position: absolute; width: 100%0; height: 100%; border-radius: 50%; background: repeating-conic-gradient(from 0deg, var(--border) 0deg 2deg, transparent 2deg 30deg); opacity: 0.5; pointer-events: none;"></div>
+                    <div style="position: absolute; width: 100%; height: 100%; border-radius: 50%; background: repeating-conic-gradient(from 0deg, var(--border) 0deg 2deg, transparent 2deg 30deg); opacity: 0.5; pointer-events: none;"></div>
 
                     <!-- Perfectly Centered Rotating Kaaba Needle -->
-                    <div id="compass-needle" style="width: 6px; height: 140px; position: absolute; top: 40px; left: calc(50% - 3px); transform-origin: center center; transition: transform 0.2s ease-out; display: flex; flex-direction: column; align-items: center; z-index: 3;">
-                        <!-- North / Mecca Arrow Head -->
-                        <div style="width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 35px solid var(--accent); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));"></div>
-                        <!-- Needle Body -->
-                        <div style="width: 4px; height: 35px; background: var(--accent);"></div>
+                    <div id="compass-needle" style="width: 6px; height: 140px; position: absolute; top: 35px; left: calc(50% - 3px); transform-origin: center center; transition: transform 0.2s ease-out; display: flex; flex-direction: column; align-items: center; z-index: 3;">
+                        <!-- Mini Kaaba Box Icon at Tip -->
+                        <div style="width: 24px; height: 22px; background: #111827; border: 2px solid var(--accent); border-radius: 3px; position: relative; box-shadow: 0 2px 6px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
+                            <!-- Gold Kiswah Band -->
+                            <div style="width: 100%; height: 5px; background: var(--accent); position: absolute; top: 6px;"></div>
+                        </div>
+                        <!-- Needle Body (Upper) -->
+                        <div style="width: 4px; height: 30px; background: var(--accent);"></div>
                         <!-- Center Pivot Pin -->
                         <div style="width: 16px; height: 16px; background: var(--primary); border-radius: 50%; border: 3px solid #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>
-                        <!-- South Tail -->
-                        <div style="width: 4px; height: 35px; background: var(--text-muted);"></div>
-                        <div style="width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 35px solid var(--text-muted);"></div>
+                        <!-- Needle Body (Lower) -->
+                        <div style="width: 4px; height: 40px; background: var(--text-muted);"></div>
                     </div>
                 </div>
             </div>
