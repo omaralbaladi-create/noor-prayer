@@ -198,36 +198,6 @@
             font-size: 1.05rem;
         }
 
-        /* Qibla Compass */
-        .compass-container {
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        .compass-dial {
-            width: 200px;
-            height: 200px;
-            border: 4px solid var(--primary);
-            border-radius: 50%;
-            margin: 20px auto;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle, var(--card-bg) 60%, var(--border) 100%);
-        }
-
-        .compass-needle {
-            width: 6px;
-            height: 120px;
-            background: var(--accent);
-            position: absolute;
-            top: 20px;
-            border-radius: 3px;
-            transform-origin: bottom center;
-            transition: transform 0.2s ease-out;
-        }
-
         /* Tasbih & Zakat */
         .tasbih-count {
             font-size: 3.5rem;
@@ -358,16 +328,35 @@
             </div>
         </div>
 
-        <div class="card">
-            <h3 style="margin-bottom: 8px; font-size: 1rem; text-align: center;">Qibla Direction (Mecca)</h3>
-            <div class="compass-container">
-                <div class="compass-dial" id="compass-dial">
-                    <div class="compass-needle" id="compass-needle"></div>
-                    <span style="position: absolute; top: 5px; font-weight: bold; font-size: 0.75rem;">N</span>
-                    <span style="position: absolute; bottom: 5px; font-weight: bold; font-size: 0.75rem;">S</span>
+        <!-- Upgraded Professional Qibla Card -->
+        <div class="card" style="text-align: center; background: linear-gradient(135deg, var(--card-bg), var(--bg));">
+            <h3 style="margin-bottom: 4px; font-size: 1.1rem; color: var(--primary);">Qibla Direction</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Pointing towards the Kaaba, Mecca</p>
+            
+            <div class="compass-container" style="position: relative; width: 220px; height: 220px; margin: 0 auto;">
+                <!-- Outer Ring -->
+                <div style="width: 220px; height: 220px; border: 3px dashed var(--primary); border-radius: 50%; position: absolute; top: 0; left: 0; display: flex; align-items: center; justify-content: center; opacity: 0.6;"></div>
+                
+                <!-- Inner Dial -->
+                <div class="compass-dial" id="compass-dial" style="width: 180px; height: 180px; border: 4px solid var(--primary); border-radius: 50%; margin: 20px auto; position: relative; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, var(--card-bg) 50%, var(--border) 100%); box-shadow: inset 0 4px 6px rgba(0,0,0,0.1);">
+                    
+                    <!-- Compass Needle / Kaaba Arrow -->
+                    <div class="compass-needle" id="compass-needle" style="width: 6px; height: 110px; background: linear-gradient(to top, var(--text-muted) 50%, var(--accent) 50%); position: absolute; top: 15px; border-radius: 3px; transform-origin: bottom center; transition: transform 0.2s ease-out; box-shadow: 0 0 8px rgba(217, 119, 6, 0.4);"></div>
+                    
+                    <!-- Center Pin -->
+                    <div style="width: 14px; height: 14px; background: var(--primary); border-radius: 50%; position: absolute; z-index: 2; border: 2px solid white;"></div>
+
+                    <!-- Cardinal Points -->
+                    <span style="position: absolute; top: 4px; font-weight: bold; font-size: 0.75rem; color: var(--primary);">N</span>
+                    <span style="position: absolute; bottom: 4px; font-weight: bold; font-size: 0.75rem; color: var(--text-muted);">S</span>
+                    <span style="position: absolute; right: 8px; font-weight: bold; font-size: 0.75rem; color: var(--text-muted);">E</span>
+                    <span style="position: absolute; left: 8px; font-weight: bold; font-size: 0.75rem; color: var(--text-muted);">W</span>
                 </div>
-                <p id="qibla-bearing-text" style="font-size: 0.9rem; font-weight: 600;">Bearing: 247.2° SW</p>
-                <p id="haptic-status" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Haptic alignment active</p>
+            </div>
+
+            <div style="margin-top: 12px;">
+                <span id="qibla-bearing-text" style="font-size: 1rem; font-weight: 700; color: var(--primary);">Bearing: 244.9° WSW</span>
+                <p id="haptic-status" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Rotate phone to calibrate alignment</p>
             </div>
         </div>
     </div>
@@ -535,12 +524,12 @@
         }
 
         function initCompass() {
-            // Kaaba Bearing calculation for Al-Khobar (~247.2°)
+            // Kaaba Bearing for Al-Khobar (244.9° WSW)
             const needle = document.getElementById('compass-needle');
             if (window.DeviceOrientationEvent) {
                 window.addEventListener('deviceorientation', (event) => {
                     const alpha = event.alpha || 0;
-                    const qiblaBearing = 247.2;
+                    const qiblaBearing = 244.9;
                     const rotation = qiblaBearing - alpha;
                     needle.style.transform = `rotate(${rotation}deg)`;
                     
