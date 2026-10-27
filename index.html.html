@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoorPrayer Ultimate Pro - Al-Khobar</title>
+    <style>
+        :root {
+            --primary: #047857;
+            --primary-dark: #065f46;
+            --primary-light: #10b981;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --accent: #d97706;
+        }
+
+        [data-theme="midnight"] {
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --primary-light: #60a5fa;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --accent: #f59e0b;
+        }
+
+        [data-theme="desert"] {
+            --primary: #b45309;
+            --primary-dark: #92400e;
+            --primary-light: #d97706;
+            --bg: #fffbeb;
+            --card-bg: #ffffff;
+            --text: #451a03;
+            --text-muted: #78350f;
+            --border: #fde68a;
+            --accent: #059669;
+        }
+
+        [data-theme="sunset"] {
+            --primary: #7c2d12;
+            --primary-dark: #431407;
+            --primary-light: #9a3412;
+            --bg: #fff7ed;
+            --card-bg: #ffffff;
+            --text: #431407;
+            --text-muted: #9a3412;
+            --border: #fed7aa;
+            --accent: #0284c7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 16px;
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .app-title h1 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .app-title p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        button {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        button:hover {
+            border-color: var(--primary);
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            margin-bottom: 16px;
+            padding-bottom: 4px;
+        }
+
+        .nav-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            white-space: nowrap;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Countdown Card */
+        .countdown-banner {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .countdown-banner h2 {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+
+        .countdown-banner .time-left {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 8px 0;
+            letter-spacing: 1px;
+        }
+
+        .countdown-banner .next-prayer-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Prayer Times List */
+        .prayer-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .prayer-item:last-child {
+            border-bottom: none;
+        }
+
+        .prayer-item.active {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .prayer-time {
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        /* Qibla Compass */
+        .compass-container {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .compass-dial {
+            width: 200px;
+            height: 200px;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            margin: 20px auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, var(--card-bg) 60%, var(--border) 100%);
+        }
+
+        .compass-needle {
+            width: 6px;
+            height: 120px;
+            background: var(--accent);
+            position: absolute;
+            top: 20px;
+            border-radius: 3px;
+            transform-origin: bottom center;
+            transition: transform 0.2s ease-out;
+        }
+
+        /* Tasbih & Zakat */
+        .tasbih-count {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-align: center;
+            color: var(--primary);
+            margin: 16px 0;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+            color: var(--text-muted);
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Azkar cards */
+        .azkar-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+
+        .azkar-arabic {
+            font-size: 1.2rem;
+            text-align: right;
+            margin-bottom: 8px;
+            line-height: 1.8;
+            font-family: 'Traditional Arabic', serif;
+        }
+
+        .azkar-translation {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .azkar-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .status-banner {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body data-theme="emerald">
+
+    <header>
+        <div class="app-title">
+            <h1>NoorPrayer Ultimate Pro</h1>
+            <p id="location-label">Al-Khobar, Saudi Arabia</p>
+        </div>
+        <div class="header-controls">
+            <button onclick="toggleTheme()" title="Change Theme">🎨</button>
+            <button onclick="openSettings()" title="Settings">⚙️</button>
+        </div>
+    </header>
+
+    <div id="offline-banner" class="status-banner hidden">Offline Mode Active (Using Cached Data)</div>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('prayer')">Prayer & Qibla</button>
+        <button class="tab-btn" onclick="switchTab('azkar')">Azkar</button>
+        <button class="tab-btn" onclick="switchTab('tasbih')">Tasbih</button>
+        <button class="tab-btn" onclick="switchTab('quran')">Khatm Quran</button>
+        <button class="tab-btn" onclick="switchTab('zakat')">Zakat</button>
+    </div>
+
+    <!-- TAB 1: PRAYER & QIBLA -->
+    <div id="tab-prayer" class="tab-content">
+        <div class="countdown-banner">
+            <h2 id="next-prayer-label">Next Prayer in</h2>
+            <div class="time-left" id="countdown-timer">00:00:00</div>
+            <div class="next-prayer-name" id="next-prayer-title">Fajr</div>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-bottom: 12px; font-size: 1rem;">Today's Schedule</h3>
+            <div id="prayer-list">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-bottom: 8px; font-size: 1rem; text-align: center;">Qibla Direction (Mecca)</h3>
+            <div class="compass-container">
+                <div class="compass-dial" id="compass-dial">
+                    <div class="compass-needle" id="compass-needle"></div>
+                    <span style="position: absolute; top: 5px; font-weight: bold; font-size: 0.75rem;">N</span>
+                    <span style="position: absolute; bottom: 5px; font-weight: bold; font-size: 0.75rem;">S</span>
+                </div>
+                <p id="qibla-bearing-text" style="font-size: 0.9rem; font-weight: 600;">Bearing: 247.2° SW</p>
+                <p id="haptic-status" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Haptic alignment active</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: AZKAR -->
+    <div id="tab-azkar" class="tab-content hidden">
+        <div class="nav-tabs" style="margin-bottom: 12px;">
+            <button class="tab-btn active" onclick="filterAzkar('morning')">Morning</button>
+            <button class="tab-btn" onclick="filterAzkar('evening')">Evening</button>
+            <button class="tab-btn" onclick="filterAzkar('sleep')">Sleep</button>
+        </div>
+        <div id="azkar-container">
+            <!-- Injected via JS -->
+        </div>
+    </div>
+
+    <!-- TAB 3: TASBIH -->
+    <div id="tab-tasbih" class="tab-content hidden">
+        <div class="card" style="text-align: center; padding: 30px 16px;">
+            <h3 id="dhikr-title" style="margin-bottom: 8px; color: var(--primary);">SubhanAllah</h3>
+            <div class="tasbih-count" id="tasbih-display">0</div>
+            <p id="tasbih-target" style="color: var(--text-muted); margin-bottom: 20px;">Target: 33</p>
+            <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 16px;">
+                <button onclick="setDhikr('SubhanAllah', 33)">SubhanAllah</button>
+                <button onclick="setDhikr('Alhamdulillah', 33)">Alhamdulillah</button>
+                <button onclick="setDhikr('Allahu Akbar', 34)">Allahu Akbar</button>
+            </div>
+            <button class="btn-primary" onclick="incrementTasbih()" style="font-size: 1.2rem; padding: 18px;">Tap to Count</button>
+            <button onclick="resetTasbih()" style="margin-top: 12px; background: transparent; border: none; color: var(--text-muted);">Reset Counter</button>
+        </div>
+    </div>
+
+    <!-- TAB 4: QURAN TRACKER -->
+    <div id="tab-quran" class="tab-content hidden">
+        <div class="card">
+            <h3 style="margin-bottom: 12px; font-size: 1rem;">Khatm Quran Progress</h3>
+            <div style="background: var(--border); border-radius: 8px; height: 16px; overflow: hidden; margin-bottom: 12px;">
+                <div id="quran-progress-bar" style="background: var(--primary); width: 10%; height: 100%;"></div>
+            </div>
+            <p id="quran-progress-text" style="text-align: center; font-size: 0.9rem; font-weight: 600; margin-bottom: 16px;">3 / 30 Juz Completed (10%)</p>
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px;" id="juz-grid">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 5: ZAKAT CALCULATOR -->
+    <div id="tab-zakat" class="tab-content hidden">
+        <div class="card">
+            <h3 style="margin-bottom: 12px; font-size: 1rem;">Zakat al-Maal Calculator</h3>
+            <div class="input-group">
+                <label>Cash in Bank & Wallet (SAR)</label>
+                <input type="number" id="zakat-cash" value="0" oninput="calculateZakat()">
+            </div>
+            <div class="input-group">
+                <label>Gold & Silver Value (SAR)</label>
+                <input type="number" id="zakat-gold" value="0" oninput="calculateZakat()">
+            </div>
+            <div class="input-group">
+                <label>Investments & Stocks (SAR)</label>
+                <input type="number" id="zakat-stocks" value="0" oninput="calculateZakat()">
+            </div>
+            <div class="input-group">
+                <label>Short-term Debts / Liabilities (SAR)</label>
+                <input type="number" id="zakat-debt" value="0" oninput="calculateZakat()">
+            </div>
+            <div style="background: var(--bg); padding: 12px; border-radius: 8px; margin-top: 16px; text-align: center;">
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Total Zakatable Wealth: <span id="zakat-total" style="font-weight: bold; color: var(--text);">0 SAR</span></p>
+                <p style="font-size: 1.1rem; font-weight: bold; color: var(--primary); margin-top: 4px;">Zakat Due (2.5%): <span id="zakat-due">0 SAR</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SETTINGS / THEMES MODAL -->
+    <div id="settings-modal" class="card hidden" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 400px; z-index: 1000; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);">
+        <h3 style="margin-bottom: 12px;">App Settings</h3>
+        <div class="input-group">
+            <label>Calculation Method</label>
+            <select id="calc-method">
+                <option value="umm_al_qura">Umm Al-Qura University, Makkah (Default)</option>
+                <option value="mwl">Muslim World League (MWL)</option>
+                <option value="isna">ISNA (North America)</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Theme Palette</label>
+            <select id="theme-select" onchange="changeTheme(this.value)">
+                <option value="emerald">Emerald Mosque</option>
+                <option value="midnight">Midnight Blue</option>
+                <option value="desert">Desert Gold</option>
+                <option value="sunset">Sunset Glow</option>
+            </select>
+        </div>
+        <button class="btn-primary" onclick="closeSettings()">Save & Close</button>
+    </div>
+
+    <script>
+        // Al-Khobar Coordinates
+        const lat = 26.2850;
+        const lng = 50.2084;
+        
+        // Mock Prayer Times for Al-Khobar
+        const prayerTimes = [
+            { name: "Fajr", time: "04:48 AM" },
+            { name: "Sunrise", time: "06:06 AM" },
+            { name: "Dhuhr", time: "11:42 AM" },
+            { name: "Asr", time: "02:58 PM" },
+            { name: "Maghrib", time: "05:18 PM" },
+            { name: "Isha", time: "06:48 PM" }
+        ];
+
+        // Azkar Database
+        const azkarData = {
+            morning: [
+                { arabic: "أصبحنا وأصبح الملك لله، والحمد لله...", translation: "We have reached the morning and at this very time unto Allah belongs all sovereignty...", count: 1 },
+                { arabic: "اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور", translation: "O Allah, by You we leave the morning, by You we enter the evening...", count: 1 }
+            ],
+            evening: [
+                { arabic: "أمسينا وأمسى الملك لله، والحمد لله...", translation: "We have reached the evening and at this very time unto Allah belongs all sovereignty...", count: 1 },
+                { arabic: "اللهم بك أمسينا وبك أصبحنا وبك نحيا وبك نموت وإليك المصير", translation: "O Allah, by You we enter the evening, by You we leave the morning...", count: 1 }
+            ],
+            sleep: [
+                { arabic: "باسمك اللهم أموت وأحيا", translation: "In Your name, O Allah, I die and I live.", count: 1 },
+                { arabic: "آية الكرسي (اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ...)", translation: "Ayat al-Kursi protection before sleep.", count: 1 }
+            ]
+        };
+
+        let currentTasbihCount = 0;
+        let currentTasbihTarget = 33;
+
+        function initApp() {
+            renderPrayerTimes();
+            renderAzkar('morning');
+            renderJuzGrid();
+            startCountdown();
+            initCompass();
+            checkOfflineStatus();
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            event.target.classList.add('active');
+        }
+
+        function renderPrayerTimes() {
+            const container = document.getElementById('prayer-list');
+            container.innerHTML = prayerTimes.map((p, i) => `
+                <div class="prayer-item ${i === 2 ? 'active' : ''}">
+                    <span>${p.name}</span>
+                    <span class="prayer-time">${p.time}</span>
+                </div>
+            `).join('');
+        }
+
+        function startCountdown() {
+            setInterval(() => {
+                const now = new Date();
+                const hours = String(23 - now.getHours()).padStart(2, '0');
+                const minutes = String(59 - now.getMinutes()).padStart(2, '0');
+                const seconds = String(59 - now.getSeconds()).padStart(2, '0');
+                document.getElementById('countdown-timer').innerText = `${hours}:${minutes}:${seconds}`;
+            }, 1000);
+        }
+
+        function initCompass() {
+            // Kaaba Bearing calculation for Al-Khobar (~247.2°)
+            const needle = document.getElementById('compass-needle');
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener('deviceorientation', (event) => {
+                    const alpha = event.alpha || 0;
+                    const qiblaBearing = 247.2;
+                    const rotation = qiblaBearing - alpha;
+                    needle.style.transform = `rotate(${rotation}deg)`;
+                    
+                    if (Math.abs(rotation % 360) < 2) {
+                        if (navigator.vibrate) navigator.vibrate(50);
+                        document.getElementById('haptic-status').innerText = "Aligned with Qibla! Haptic lock active.";
+                    } else {
+                        document.getElementById('haptic-status').innerText = "Rotate phone until haptic pulse locks.";
+                    }
+                });
+            }
+        }
+
+        function renderAzkar(category) {
+            const container = document.getElementById('azkar-container');
+            const list = azkarData[category] || [];
+            container.innerHTML = list.map(z => `
+                <div class="azkar-card">
+                    <div class="azkar-arabic">${z.arabic}</div>
+                    <div class="azkar-translation">${z.translation}</div>
+                    <div class="azkar-footer">
+                        <span>Target: ${z.count} time(s)</span>
+                        <button onclick="this.innerText = 'Completed ✔'">Mark Read</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function setDhikr(name, target) {
+            document.getElementById('dhikr-title').innerText = name;
+            currentTasbihTarget = target;
+            document.getElementById('tasbih-target').innerText = `Target: ${target}`;
+            currentTasbihCount = 0;
+            document.getElementById('tasbih-display').innerText = currentTasbihCount;
+        }
+
+        function incrementTasbih() {
+            currentTasbihCount++;
+            document.getElementById('tasbih-display').innerText = currentTasbihCount;
+            if (currentTasbihCount >= currentTasbihTarget && navigator.vibrate) {
+                navigator.vibrate([100, 50, 100]);
+            }
+        }
+
+        function resetTasbih() {
+            currentTasbihCount = 0;
+            document.getElementById('tasbih-display').innerText = currentTasbihCount;
+        }
+
+        function renderJuzGrid() {
+            const grid = document.getElementById('juz-grid');
+            let html = '';
+            for (let i = 1; i <= 30; i++) {
+                const completed = i <= 3;
+                html += `<div style="background: ${completed ? 'var(--primary)' : 'var(--card-bg)'}; color: ${completed ? '#fff' : 'var(--text)'}; border: 1px solid var(--border); border-radius: 6px; text-align: center; padding: 8px 0; font-size: 0.8rem; font-weight: bold;">${i}</div>`;
+            }
+            grid.innerHTML = html;
+        }
+
+        function calculateZakat() {
+            const cash = parseFloat(document.getElementById('zakat-cash').value) || 0;
+            const gold = parseFloat(document.getElementById('zakat-gold').value) || 0;
+            const stocks = parseFloat(document.getElementById('zakat-stocks').value) || 0;
+            const debt = parseFloat(document.getElementById('zakat-debt').value) || 0;
+            
+            const total = Math.max(0, (cash + gold + stocks) - debt);
+            const due = total * 0.025;
+
+            document.getElementById('zakat-total').innerText = total.toLocaleString() + ' SAR';
+            document.getElementById('zakat-due').innerText = due.toLocaleString() + ' SAR';
+        }
+
+        function toggleTheme() {
+            const modal = document.getElementById('settings-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function changeTheme(themeName) {
+            document.body.setAttribute('data-theme', themeName);
+        }
+
+        function closeSettings() {
+            document.getElementById('settings-modal').classList.add('hidden');
+        }
+
+        function checkOfflineStatus() {
+            if (!navigator.onLine) {
+                document.getElementById('offline-banner').classList.remove('hidden');
+            }
+            window.addEventListener('online', () => document.getElementById('offline-banner').classList.add('hidden'));
+            window.addEventListener('offline', () => document.getElementById('offline-banner').classList.remove('hidden'));
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
