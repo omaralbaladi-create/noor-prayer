@@ -1,1074 +1,2035 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NoorPrayer Ultimate Pro</title>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+  <title>NoorPrayer Ultimate Pro</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/adhan@5.0.0/dist/adhan.umd.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
 
-    <style>
-        :root {
-            --primary: #047857;
-            --primary-dark: #065f46;
-            --primary-light: #10b981;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --accent: #d97706;
-            --success: #059669;
-            --warning-bg: #fef3c7;
-            --warning-text: #92400e;
-            --danger: #b91c1c;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-        }
+  <!-- Adhan 4.4.6 UMD -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/adhan@4.4.6/lib/bundles/adhan.umd.min.js"
+    onerror="window.adhanLoadFailed = true"
+  ></script>
 
-        [data-theme="emerald"] {
-            --primary: #047857;
-            --primary-dark: #065f46;
-            --primary-light: #10b981;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --accent: #d97706;
-            --success: #059669;
-            --warning-bg: #fef3c7;
-            --warning-text: #92400e;
-            --danger: #b91c1c;
-        }
+  <style>
+    :root {
+      --primary: #047857;
+      --primary-dark: #065f46;
+      --primary-light: #10b981;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #d97706;
+      --success: #059669;
+      --warning-bg: #fef3c7;
+      --warning-text: #92400e;
+      --error-bg: #fee2e2;
+      --error-text: #991b1b;
+      --overlay: rgba(0, 0, 0, 0.45);
+      --shadow: 0 10px 20px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 20px 30px rgba(0, 0, 0, 0.18);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-pill: 999px;
+    }
 
-        [data-theme="midnight"] {
-            --primary: #3b82f6;
-            --primary-dark: #1d4ed8;
-            --primary-light: #60a5fa;
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #334155;
-            --accent: #f59e0b;
-            --success: #22c55e;
-            --warning-bg: #3f2f0a;
-            --warning-text: #fde68a;
-            --danger: #f87171;
-        }
+    [data-theme="midnight"] {
+      --primary: #3b82f6;
+      --primary-dark: #1d4ed8;
+      --primary-light: #60a5fa;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --accent: #f59e0b;
+      --warning-bg: #3f2f0a;
+      --warning-text: #fde68a;
+      --error-bg: #4c1d1d;
+      --error-text: #fecaca;
+      --overlay: rgba(0, 0, 0, 0.6);
+    }
 
-        [data-theme="desert"] {
-            --primary: #b45309;
-            --primary-dark: #92400e;
-            --primary-light: #d97706;
-            --bg: #fffbeb;
-            --card-bg: #ffffff;
-            --text: #451a03;
-            --text-muted: #78350f;
-            --border: #fde68a;
-            --accent: #059669;
-            --success: #047857;
-            --warning-bg: #fef3c7;
-            --warning-text: #92400e;
-            --danger: #b91c1c;
-        }
+    [data-theme="desert"] {
+      --primary: #b45309;
+      --primary-dark: #92400e;
+      --primary-light: #d97706;
+      --bg: #fffbeb;
+      --card-bg: #ffffff;
+      --text: #451a03;
+      --text-muted: #78350f;
+      --border: #fde68a;
+      --accent: #059669;
+      --warning-bg: #fef3c7;
+      --warning-text: #92400e;
+      --error-bg: #fee2e2;
+      --error-text: #991b1b;
+    }
 
-        [data-theme="sunset"] {
-            --primary: #7c2d12;
-            --primary-dark: #431407;
-            --primary-light: #9a3412;
-            --bg: #fff7ed;
-            --card-bg: #ffffff;
-            --text: #431407;
-            --text-muted: #9a3412;
-            --border: #fed7aa;
-            --accent: #0284c7;
-            --success: #059669;
-            --warning-bg: #ffedd5;
-            --warning-text: #9a3412;
-            --danger: #b91c1c;
-        }
+    [data-theme="sunset"] {
+      --primary: #7c2d12;
+      --primary-dark: #431407;
+      --primary-light: #9a3412;
+      --bg: #fff7ed;
+      --card-bg: #ffffff;
+      --text: #431407;
+      --text-muted: #9a3412;
+      --border: #fed7aa;
+      --accent: #0284c7;
+      --warning-bg: #ffedd5;
+      --warning-text: #9a3412;
+      --error-bg: #fee2e2;
+      --error-text: #991b1b;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-        body {
-            background: var(--bg);
-            color: var(--text);
-            padding: 16px;
-            max-width: 480px;
-            margin: 0 auto;
-            min-height: 100vh;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border);
-            gap: 12px;
-        }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 16px;
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
 
-        .app-title h1 {
-            font-size: 1.2rem;
-            color: var(--primary);
-            font-weight: 800;
-            line-height: 1.2;
-        }
+    button,
+    input,
+    select {
+      font: inherit;
+    }
 
-        .app-title p {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
+    button {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: transform 0.08s ease, border-color 0.2s ease, opacity 0.2s ease,
+        background-color 0.2s ease, color 0.2s ease;
+    }
 
-        .header-controls {
-            display: flex;
-            gap: 8px;
-            flex-shrink: 0;
-        }
+    button:hover {
+      border-color: var(--primary);
+    }
 
-        button {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 8px 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
+    button:active {
+      transform: scale(0.98);
+    }
 
-        button:hover {
-            border-color: var(--primary);
-        }
+    button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
 
-        .btn-primary {
-            background: var(--primary);
-            color: #ffffff;
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 8px;
-        }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
 
-        .btn-primary:hover {
-            background: var(--primary-dark);
-        }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
 
-        .nav-tabs {
-            display: flex;
-            gap: 6px;
-            overflow-x: auto;
-            margin-bottom: 16px;
-            padding-bottom: 4px;
-            scrollbar-width: none;
-        }
+    .btn-ghost {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+    }
 
-        .nav-tabs::-webkit-scrollbar {
-            display: none;
-        }
+    .danger-btn {
+      background: var(--error-bg);
+      color: var(--error-text);
+      border: 1px solid transparent;
+    }
 
-        .tab-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            white-space: nowrap;
-            padding: 7px 12px;
-            border-radius: 999px;
-            font-size: 0.8rem;
-        }
+    .danger-btn:hover {
+      border-color: var(--error-text);
+    }
 
-        .tab-btn.active {
-            background: var(--primary);
-            color: #ffffff;
-            border-color: var(--primary);
-        }
+    .muted-btn {
+      background: var(--card-bg);
+      color: var(--text-muted);
+    }
 
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 16px;
-            box-shadow: var(--shadow);
-        }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
 
-        .countdown-banner {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: #ffffff;
-            border-radius: 18px;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 16px;
-            box-shadow: var(--shadow);
-        }
+    .app-title h1 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      font-weight: 800;
+      line-height: 1.2;
+    }
 
-        .countdown-banner h2 {
-            font-size: 0.9rem;
-            opacity: 0.92;
-            margin-bottom: 4px;
-        }
+    .app-title p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.35;
+    }
 
-        .countdown-banner .time-left {
-            font-size: 2rem;
-            font-weight: 800;
-            margin: 8px 0;
-            letter-spacing: 1px;
-        }
+    .header-controls {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
 
-        .countdown-banner .next-prayer-name {
-            font-size: 1.08rem;
-            font-weight: 700;
-        }
+    .nav-tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      margin-bottom: 16px;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
 
-        .prayer-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-            gap: 12px;
-        }
+    .nav-tabs::-webkit-scrollbar {
+      display: none;
+    }
 
-        .prayer-item:last-child {
-            border-bottom: none;
-        }
+    .tab-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      white-space: nowrap;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+    }
 
-        .prayer-item.active {
-            color: var(--primary);
-            font-weight: 800;
-        }
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
 
-        .prayer-time {
-            font-weight: 700;
-            font-size: 1.02rem;
-        }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
 
-        .tasbih-count {
-            font-size: 3.5rem;
-            font-weight: 800;
-            text-align: center;
-            color: var(--primary);
-            margin: 16px 0;
-        }
+    .countdown-banner {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
 
-        .input-group {
-            margin-bottom: 12px;
-        }
+    .countdown-banner h2 {
+      font-size: 0.9rem;
+      opacity: 0.92;
+      margin-bottom: 4px;
+    }
 
-        .input-group label {
-            display: block;
-            font-size: 0.85rem;
-            margin-bottom: 6px;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
+    .countdown-banner .time-left {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 8px 0;
+      letter-spacing: 1px;
+      font-variant-numeric: tabular-nums;
+    }
 
-        .input-group input,
-        .input-group select {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            background: var(--card-bg);
-            color: var(--text);
-            font-size: 0.95rem;
-        }
+    .countdown-banner .next-prayer-name {
+      font-size: 1.06rem;
+      font-weight: 700;
+    }
 
-        .azkar-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 14px;
-            margin-bottom: 12px;
-            box-shadow: var(--shadow);
-        }
+    .countdown-banner .next-prayer-sub,
+    .hijri {
+      font-size: 0.8rem;
+      opacity: 0.86;
+      margin-top: 4px;
+    }
 
-        .azkar-arabic {
-            font-size: 1.2rem;
-            text-align: right;
-            margin-bottom: 8px;
-            line-height: 1.85;
-            font-family: "Amiri", "Traditional Arabic", serif;
-        }
+    .prayer-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
 
-        .azkar-translation {
-            font-size: 0.86rem;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            line-height: 1.5;
-        }
+    .prayer-item:last-child {
+      border-bottom: none;
+    }
 
-        .azkar-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.8rem;
-        }
+    .prayer-item.active {
+      color: var(--primary);
+      font-weight: 800;
+    }
 
-        .hidden {
-            display: none !important;
-        }
+    .prayer-time {
+      font-weight: 700;
+      font-size: 1.02rem;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
 
-        .status-banner {
-            background: var(--warning-bg);
-            color: var(--warning-text);
-            padding: 8px 12px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            text-align: center;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
+    .ar-name {
+      font-family: "Amiri", "Noto Naskh Arabic", serif;
+      color: var(--text-muted);
+      margin-left: 6px;
+      font-weight: 400;
+    }
 
-        .settings-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.35);
-            z-index: 999;
-        }
+    .tag {
+      font-size: 0.65rem;
+      background: var(--primary);
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 10px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
 
-        .settings-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: calc(100% - 32px);
-            max-width: 400px;
-            z-index: 1000;
-            box-shadow: 0 24px 40px rgba(0, 0, 0, 0.25);
-            margin-bottom: 0;
-        }
+    .tasbih-count {
+      font-size: 3.4rem;
+      font-weight: 800;
+      text-align: center;
+      color: var(--primary);
+      margin: 16px 0;
+      font-variant-numeric: tabular-nums;
+    }
 
-        .mini-note {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            line-height: 1.4;
-            margin-top: 8px;
-        }
+    .input-group {
+      margin-bottom: 12px;
+    }
 
-        .juz-cell {
-            cursor: pointer;
-            border-radius: 8px;
-            text-align: center;
-            padding: 9px 0;
-            font-size: 0.82rem;
-            font-weight: 800;
-            border: 1px solid var(--border);
-            background: var(--card-bg);
-            color: var(--text);
-        }
+    .input-group label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
 
-        .juz-cell.done {
-            background: var(--primary);
-            color: #ffffff;
-            border-color: var(--primary);
-        }
+    .input-group input,
+    .input-group select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
 
-        @media (max-width: 420px) {
-            body {
-                padding: 12px;
-            }
+    .input-group input:focus,
+    .input-group select:focus,
+    button:focus-visible {
+      outline: 2px solid var(--primary-light);
+      outline-offset: 2px;
+      border-color: var(--primary);
+    }
 
-            .countdown-banner .time-left {
-                font-size: 1.75rem;
-            }
+    .azkar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
 
-            .tasbih-count {
-                font-size: 3rem;
-            }
-        }
-    </style>
+    .azkar-ref {
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .azkar-arabic {
+      font-size: 1.25rem;
+      text-align: right;
+      margin-bottom: 8px;
+      line-height: 1.9;
+      font-family: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", serif;
+      direction: rtl;
+    }
+
+    .azkar-translation {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      line-height: 1.55;
+    }
+
+    .azkar-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+
+    .azkar-note,
+    .small-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .azkar-note {
+      text-align: center;
+      margin: 4px 0 12px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .status-banner {
+      background: var(--warning-bg);
+      color: var(--warning-text);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      text-align: center;
+      margin-bottom: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .error-banner {
+      background: var(--error-bg);
+      color: var(--error-text);
+    }
+
+    .compass-wrap {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 0 auto;
+    }
+
+    .compass-ring {
+      position: absolute;
+      inset: 0;
+      border: 2px dashed var(--primary);
+      border-radius: 50%;
+      opacity: 0.4;
+    }
+
+    .compass-dial {
+      position: absolute;
+      inset: 0;
+      border: 4px solid var(--primary);
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--card-bg) 60%, var(--border) 100%);
+      box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+
+    .compass-rose {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.15s linear;
+      will-change: transform;
+    }
+
+    .compass-rose::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: repeating-conic-gradient(
+        from -1deg,
+        var(--border) 0deg 2deg,
+        transparent 2deg 30deg
+      );
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .card-pt {
+      position: absolute;
+      font-weight: 800;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .card-n {
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--primary);
+    }
+
+    .card-s {
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .card-e {
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .card-w {
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .compass-needle {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      transition: transform 0.15s linear;
+      will-change: transform;
+    }
+
+    .kaaba {
+      position: absolute;
+      top: 28px;
+      left: 50%;
+      width: 24px;
+      height: 22px;
+      margin-left: -12px;
+      background: #111827;
+      border: 2px solid var(--accent);
+      border-radius: 3px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .kaaba-band {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 6px;
+      height: 5px;
+      background: var(--accent);
+    }
+
+    .needle-stem {
+      position: absolute;
+      left: 50%;
+      width: 4px;
+      margin-left: -2px;
+      top: 50px;
+      bottom: 50%;
+      background: var(--accent);
+    }
+
+    .needle-tail {
+      position: absolute;
+      left: 50%;
+      width: 4px;
+      margin-left: -2px;
+      top: 50%;
+      height: 40px;
+      background: var(--text-muted);
+      opacity: 0.6;
+    }
+
+    .compass-hub {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 16px;
+      height: 16px;
+      margin: -8px 0 0 -8px;
+      background: var(--primary);
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 4;
+    }
+
+    .phone-marker {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-left: -7px;
+      width: 0;
+      height: 0;
+      z-index: 5;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 12px solid var(--accent);
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--overlay);
+      z-index: 900;
+    }
+
+    .modal {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100% - 32px);
+      max-width: 400px;
+      max-height: 90vh;
+      overflow-y: auto;
+      z-index: 1000;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .modal-actions button {
+      flex: 1;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .check-row input {
+      width: 18px;
+      height: 18px;
+      margin-top: 1px;
+    }
+
+    .check-row label {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .juz-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 6px;
+    }
+
+    .juz-cell {
+      cursor: pointer;
+      border-radius: 8px;
+      text-align: center;
+      padding: 9px 0;
+      font-size: 0.82rem;
+      font-weight: 800;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      user-select: none;
+    }
+
+    .juz-cell.done {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .section-title {
+      margin-bottom: 12px;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    @media (max-width: 420px) {
+      body {
+        padding: 12px;
+      }
+
+      .countdown-banner .time-left {
+        font-size: 1.75rem;
+      }
+
+      .tasbih-count {
+        font-size: 3rem;
+      }
+
+      .compass-wrap {
+        width: 210px;
+        height: 210px;
+      }
+    }
+  </style>
 </head>
 <body data-theme="emerald">
-    <header>
-        <div class="app-title">
-            <h1>NoorPrayer Ultimate Pro</h1>
-            <p id="location-label">Locating...</p>
-        </div>
-        <div class="header-controls">
-            <button onclick="cycleTheme()" aria-label="Change Theme">🎨</button>
-            <button onclick="toggleSettings()" aria-label="Open Settings">⚙️</button>
-        </div>
-    </header>
+  <header>
+    <div class="app-title">
+      <h1>NoorPrayer Ultimate Pro</h1>
+      <p id="location-label">Locating...</p>
+    </div>
+    <div class="header-controls">
+      <button id="theme-cycle-btn" aria-label="Change theme">🎨</button>
+      <button id="open-settings-btn" aria-label="Open settings">⚙️</button>
+    </div>
+  </header>
 
-    <div id="offline-banner" class="status-banner hidden">Offline Mode Active</div>
+  <div id="offline-banner" class="status-banner hidden">
+    You're offline. Prayer times are calculated on your device; city-name lookup is unavailable.
+  </div>
 
-    <div class="nav-tabs" id="main-nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('prayer', event)">Prayer &amp; Qibla</button>
-        <button class="tab-btn" onclick="switchTab('azkar', event)">Azkar</button>
-        <button class="tab-btn" onclick="switchTab('tasbih', event)">Tasbih</button>
-        <button class="tab-btn" onclick="switchTab('quran', event)">Khatm Quran</button>
-        <button class="tab-btn" onclick="switchTab('zakat', event)">Zakat</button>
+  <div id="lib-banner" class="status-banner error-banner hidden">
+    The prayer-time library failed to load. Check your connection and reload. Qibla, Azkar, Tasbih, Quran tracker and Zakat still work.
+  </div>
+
+  <div class="nav-tabs" id="main-nav-tabs">
+    <button class="tab-btn active" data-tab="prayer">Prayer &amp; Qibla</button>
+    <button class="tab-btn" data-tab="azkar">Azkar</button>
+    <button class="tab-btn" data-tab="tasbih">Tasbih</button>
+    <button class="tab-btn" data-tab="quran">Khatm Quran</button>
+    <button class="tab-btn" data-tab="zakat">Zakat</button>
+  </div>
+
+  <div id="tab-prayer" class="tab-content">
+    <div class="countdown-banner">
+      <h2 id="next-prayer-label">Next Prayer</h2>
+      <div class="time-left" id="countdown-timer">--:--:--</div>
+      <div class="next-prayer-name" id="next-prayer-title">Loading...</div>
+      <div class="next-prayer-sub" id="next-prayer-sub"></div>
+      <div class="hijri" id="hijri-date"></div>
     </div>
 
-    <div id="tab-prayer" class="tab-content">
-        <div class="countdown-banner">
-            <h2 id="next-prayer-label">Next Prayer</h2>
-            <div class="time-left" id="countdown-timer">00:00:00</div>
-            <div class="next-prayer-name" id="next-prayer-title">Loading...</div>
-        </div>
-
-        <div class="card">
-            <h3 style="margin-bottom: 12px; font-size: 1rem;">Today's Schedule</h3>
-            <div id="prayer-list"></div>
-        </div>
-
-        <div class="card" style="text-align: center; background: linear-gradient(135deg, var(--card-bg), var(--bg));">
-            <h3 style="margin-bottom: 4px; font-size: 1.1rem; color: var(--primary);">Qibla Direction</h3>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Pointing toward the Kaaba in Makkah</p>
-
-            <button id="ios-permission-btn" class="btn-primary hidden" style="margin-bottom: 12px;" onclick="requestIOSCompass()">Enable Compass Sensor (iOS)</button>
-
-            <div style="position: relative; width: 220px; height: 220px; margin: 0 auto;">
-                <div style="width: 220px; height: 220px; border: 2px dashed var(--primary); border-radius: 50%; position: absolute; top: 0; left: 0; opacity: 0.35;"></div>
-
-                <div id="compass-dial" style="width: 220px; height: 220px; border: 4px solid var(--primary); border-radius: 50%; position: absolute; top: 0; left: 0; background: radial-gradient(circle, var(--card-bg) 60%, var(--border) 100%); box-shadow: inset 0 4px 10px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center;">
-                    <span style="position: absolute; top: 8px; font-weight: 800; font-size: 0.8rem; color: var(--primary);">N</span>
-                    <span style="position: absolute; bottom: 8px; font-weight: 800; font-size: 0.8rem; color: var(--text-muted);">S</span>
-                    <span style="position: absolute; right: 12px; font-weight: 800; font-size: 0.8rem; color: var(--text-muted);">E</span>
-                    <span style="position: absolute; left: 12px; font-weight: 800; font-size: 0.8rem; color: var(--text-muted);">W</span>
-
-                    <div id="compass-needle" style="width: 6px; height: 140px; position: absolute; top: 35px; left: calc(50% - 3px); transform-origin: center center; transition: transform 0.12s ease-out; display: flex; flex-direction: column; align-items: center; z-index: 3;">
-                        <div style="width: 24px; height: 22px; background: #111827; border: 2px solid var(--accent); border-radius: 3px; position: relative; box-shadow: 0 2px 6px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
-                            <div style="width: 100%; height: 5px; background: var(--accent); position: absolute; top: 6px;"></div>
-                        </div>
-                        <div style="width: 4px; height: 30px; background: var(--accent);"></div>
-                        <div style="width: 16px; height: 16px; background: var(--primary); border-radius: 50%; border: 3px solid #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>
-                        <div style="width: 4px; height: 40px; background: var(--text-muted);"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="margin-top: 20px;">
-                <span id="qibla-bearing-text" style="font-size: 1.05rem; font-weight: 700; color: var(--primary);">Bearing: --°</span>
-                <p id="haptic-status" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Calibrating compass...</p>
-            </div>
-        </div>
+    <div class="card">
+      <h3 class="section-title">Today's Schedule</h3>
+      <div id="prayer-list"></div>
     </div>
 
-    <div id="tab-azkar" class="tab-content hidden">
-        <div class="nav-tabs" id="azkar-sub-tabs" style="margin-bottom: 12px;">
-            <button class="tab-btn active" onclick="filterAzkar('morning', event)">Morning</button>
-            <button class="tab-btn" onclick="filterAzkar('evening', event)">Evening</button>
-            <button class="tab-btn" onclick="filterAzkar('sleep', event)">Sleep</button>
+    <div class="card" style="text-align: center; background: linear-gradient(135deg, var(--card-bg), var(--bg));">
+      <h3 style="margin-bottom: 4px; font-size: 1.1rem; color: var(--primary);">Qibla Direction</h3>
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">
+        The Kaaba marker shows the direction of Mecca. Turn until it meets the top arrow.
+      </p>
+
+      <button id="ios-permission-btn" class="btn-primary hidden" style="margin-bottom: 12px;">
+        Enable Compass Sensor (iOS)
+      </button>
+
+      <div class="compass-wrap">
+        <div class="compass-ring"></div>
+        <div class="compass-dial" id="compass-dial">
+          <div class="compass-rose" id="compass-rose">
+            <span class="card-pt card-n">N</span>
+            <span class="card-pt card-s">S</span>
+            <span class="card-pt card-e">E</span>
+            <span class="card-pt card-w">W</span>
+            <div class="compass-needle" id="compass-needle">
+              <div class="kaaba"><div class="kaaba-band"></div></div>
+              <div class="needle-stem"></div>
+              <div class="needle-tail"></div>
+            </div>
+          </div>
+          <div class="compass-hub"></div>
+          <div class="phone-marker"></div>
         </div>
-        <div id="azkar-container"></div>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <span id="qibla-bearing-text" style="font-size: 1.05rem; font-weight: 700; color: var(--primary);">Bearing: --°</span>
+        <p id="haptic-status" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Calibrating compass...</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-azkar" class="tab-content hidden">
+    <div class="nav-tabs" id="azkar-sub-tabs" style="margin-bottom: 12px;">
+      <button class="tab-btn active" data-azkar="morning">Morning</button>
+      <button class="tab-btn" data-azkar="evening">Evening</button>
+      <button class="tab-btn" data-azkar="sleep">Sleep</button>
     </div>
 
-    <div id="tab-tasbih" class="tab-content hidden">
-        <div class="card" style="text-align: center; padding: 30px 16px;">
-            <h3 id="dhikr-title" style="margin-bottom: 8px; color: var(--primary);">SubhanAllah</h3>
-            <div class="tasbih-count" id="tasbih-display">0</div>
-            <p id="tasbih-target" style="color: var(--text-muted); margin-bottom: 20px;">Target: 33</p>
-            <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 16px; flex-wrap: wrap;">
-                <button onclick="setDhikr('SubhanAllah', 33)">SubhanAllah</button>
-                <button onclick="setDhikr('Alhamdulillah', 33)">Alhamdulillah</button>
-                <button onclick="setDhikr('Allahu Akbar', 34)">Allahu Akbar</button>
-            </div>
-            <button class="btn-primary" onclick="incrementTasbih()" style="font-size: 1.2rem; padding: 18px;">Tap to Count</button>
-            <button onclick="resetTasbih()" style="margin-top: 12px; background: transparent; border: none; color: var(--text-muted);">Reset Counter</button>
-        </div>
+    <p class="azkar-note">
+      Progress resets daily. Please verify the texts against a printed Hisn al-Muslim.
+    </p>
+
+    <div id="azkar-container"></div>
+
+    <button class="btn-ghost" style="width: 100%;" id="reset-azkar-btn">
+      Reset today's Azkar
+    </button>
+  </div>
+
+  <div id="tab-tasbih" class="tab-content hidden">
+    <div class="card" style="text-align: center; padding: 30px 16px;">
+      <h3 id="dhikr-title" style="margin-bottom: 4px; color: var(--primary);">SubhanAllah</h3>
+      <div id="dhikr-ar" class="azkar-arabic" style="text-align: center; margin-bottom: 0;"></div>
+      <div class="tasbih-count" id="tasbih-display">0</div>
+      <p id="tasbih-target" style="color: var(--text-muted); margin-bottom: 4px;">Target: 33</p>
+      <p id="tasbih-msg" style="color: var(--primary); font-weight: 700; min-height: 1.4em; margin-bottom: 12px;"></p>
+
+      <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 16px; flex-wrap: wrap;">
+        <button class="dhikr-btn" data-dhikr="0">SubhanAllah</button>
+        <button class="dhikr-btn" data-dhikr="1">Alhamdulillah</button>
+        <button class="dhikr-btn" data-dhikr="2">Allahu Akbar</button>
+      </div>
+
+      <button class="btn-primary" id="tasbih-increment-btn" style="font-size: 1.2rem; padding: 18px;">
+        Tap to Count
+      </button>
+
+      <button class="btn-ghost" id="tasbih-reset-btn" style="margin-top: 12px;">
+        Reset Counter
+      </button>
+    </div>
+  </div>
+
+  <div id="tab-quran" class="tab-content hidden">
+    <div class="card">
+      <h3 class="section-title">Khatm Quran Progress</h3>
+
+      <div style="background: var(--border); border-radius: 8px; height: 16px; overflow: hidden; margin-bottom: 12px;">
+        <div id="quran-progress-bar" style="background: var(--primary); width: 0%; height: 100%; transition: width 0.3s;"></div>
+      </div>
+
+      <p id="quran-progress-text" style="text-align: center; font-size: 0.9rem; font-weight: 700; margin-bottom: 16px;">
+        0 / 30 Juz Completed (0%)
+      </p>
+
+      <div class="juz-grid" id="juz-grid"></div>
+
+      <button class="btn-ghost" style="width: 100%; margin-top: 12px;" id="reset-khatm-btn">
+        Start a new Khatm
+      </button>
+    </div>
+  </div>
+
+  <div id="tab-zakat" class="tab-content hidden">
+    <div class="card">
+      <h3 class="section-title">Zakat al-Maal Calculator</h3>
+
+      <div class="input-group">
+        <label for="zakat-basis">Nisab basis</label>
+        <select id="zakat-basis">
+          <option value="gold">Gold: 85 g</option>
+          <option value="silver">Silver: 595 g (lower threshold)</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="zakat-gold-price">Today's gold price per gram, 24k (SAR)</label>
+        <input type="number" min="0" step="any" id="zakat-gold-price" placeholder="Enter current price" />
+      </div>
+
+      <div class="input-group">
+        <label for="zakat-silver-price">Today's silver price per gram (SAR)</label>
+        <input type="number" min="0" step="any" id="zakat-silver-price" placeholder="Enter current price" />
+      </div>
+
+      <div class="input-group">
+        <label for="zakat-cash">Cash in Bank &amp; Wallet (SAR)</label>
+        <input type="number" min="0" step="any" id="zakat-cash" value="0" />
+      </div>
+
+      <div class="input-group">
+        <label for="zakat-gold">Gold &amp; Silver Value (SAR)</label>
+        <input type="number" min="0" step="any" id="zakat-gold" value="0" />
+      </div>
+
+      <div class="input-group">
+        <label for="zakat-stocks">Investments &amp; Stocks (SAR)</label>
+        <input type="number" min="0" step="any" id="zakat-stocks" value="0" />
+      </div>
+
+      <div class="input-group">
+        <label for="zakat-debt">Debts due within the year (SAR)</label>
+        <input type="number" min="0" step="any" id="zakat-debt" value="0" />
+      </div>
+
+      <div class="check-row">
+        <input type="checkbox" id="zakat-hawl" />
+        <label for="zakat-hawl"><strong>One lunar year (Hawl) has passed over this wealth</strong></label>
+      </div>
+
+      <div style="background: var(--bg); padding: 12px; border-radius: 8px; margin-top: 8px; text-align: center;">
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+          <span id="zakat-nisab-label">Nisab (85 g gold)</span>:
+          <span id="zakat-nisab-val" style="font-weight: 800;">--</span>
+        </p>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">
+          Zakatable wealth:
+          <span id="zakat-total" style="font-weight: 800; color: var(--text);">0 SAR</span>
+        </p>
+        <p id="zakat-status-msg" style="font-size: 0.85rem; font-weight: 800; color: var(--accent); margin-top: 6px;"></p>
+        <p style="font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-top: 8px;">
+          Zakat due (2.5%): <span id="zakat-due">0 SAR</span>
+        </p>
+      </div>
+
+      <p class="small-note" style="margin-top: 10px;">
+        Balances are never saved; only the prices and nisab basis are. Scholars differ on the nisab basis, so ask your scholar if unsure.
+      </p>
+    </div>
+  </div>
+
+  <div id="overlay" class="overlay hidden"></div>
+
+  <div id="settings-modal" class="card modal hidden" role="dialog" aria-modal="true" aria-label="App settings">
+    <h3 style="margin-bottom: 12px;">App Settings</h3>
+
+    <div class="input-group">
+      <label for="loc-mode">Location</label>
+      <select id="loc-mode">
+        <option value="auto">Automatic (GPS)</option>
+        <option value="preset">Choose a city</option>
+        <option value="custom">Custom coordinates</option>
+      </select>
     </div>
 
-    <div id="tab-quran" class="tab-content hidden">
-        <div class="card">
-            <h3 style="margin-bottom: 12px; font-size: 1rem;">Khatm Quran Progress</h3>
-            <div style="background: var(--border); border-radius: 10px; height: 16px; overflow: hidden; margin-bottom: 12px;">
-                <div id="quran-progress-bar" style="background: var(--primary); width: 0%; height: 100%;"></div>
-            </div>
-            <p id="quran-progress-text" style="text-align: center; font-size: 0.9rem; font-weight: 700; margin-bottom: 16px;">0 / 30 Juz Completed (0%)</p>
-            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px;" id="juz-grid"></div>
-        </div>
+    <div class="input-group hidden" id="loc-preset-group">
+      <select id="loc-preset" aria-label="City"></select>
     </div>
 
-    <div id="tab-zakat" class="tab-content hidden">
-        <div class="card">
-            <h3 style="margin-bottom: 12px; font-size: 1rem;">Zakat al-Maal Calculator</h3>
-            <div class="input-group">
-                <label>Gold Price per Gram (SAR) [Nisab Benchmark]</label>
-                <input type="number" id="zakat-gold-price" value="280" oninput="calculateZakat()" />
-            </div>
-            <div class="input-group">
-                <label>Cash in Bank &amp; Wallet (SAR)</label>
-                <input type="number" id="zakat-cash" value="0" oninput="calculateZakat()" />
-            </div>
-            <div class="input-group">
-                <label>Gold &amp; Silver Value (SAR)</label>
-                <input type="number" id="zakat-gold" value="0" oninput="calculateZakat()" />
-            </div>
-            <div class="input-group">
-                <label>Investments &amp; Stocks (SAR)</label>
-                <input type="number" id="zakat-stocks" value="0" oninput="calculateZakat()" />
-            </div>
-            <div class="input-group">
-                <label>Short-term Debts / Liabilities (SAR)</label>
-                <input type="number" id="zakat-debt" value="0" oninput="calculateZakat()" />
-            </div>
-            <div class="input-group" style="display: flex; align-items: flex-start; gap: 8px;">
-                <input type="checkbox" id="zakat-hawl" onchange="calculateZakat()" style="width: 20px; height: 20px; margin-top: 2px;" />
-                <label for="zakat-hawl" style="margin: 0; font-weight: 700; color: var(--text);">Has 1 lunar year (Hawl) passed over this wealth?</label>
-            </div>
-            <div style="background: var(--bg); padding: 12px; border-radius: 10px; margin-top: 16px; text-align: center;">
-                <p style="font-size: 0.85rem; color: var(--text-muted);">Nisab Threshold (85g Gold): <span id="zakat-nisab-val" style="font-weight: 800;">0 SAR</span></p>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Zakatable Wealth: <span id="zakat-total" style="font-weight: 800; color: var(--text);">0 SAR</span></p>
-                <p id="zakat-status-msg" style="font-size: 0.85rem; font-weight: 800; color: var(--accent); margin-top: 6px;">Wealth is below Nisab threshold</p>
-                <p style="font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-top: 8px;">Zakat Due (2.5%): <span id="zakat-due">0 SAR</span></p>
-            </div>
-            <p class="mini-note">This is a simple estimator for personal use. For complex cases, consult a qualified scholar or accountant.</p>
-        </div>
+    <div class="input-group hidden" id="loc-custom-group">
+      <input type="number" step="any" id="loc-lat" placeholder="Latitude (e.g. 26.285)" style="margin-bottom: 8px;" aria-label="Latitude" />
+      <input type="number" step="any" id="loc-lng" placeholder="Longitude (e.g. 50.208)" aria-label="Longitude" />
     </div>
 
-    <div id="settings-backdrop" class="settings-backdrop hidden" onclick="toggleSettings()"></div>
-
-    <div id="settings-modal" class="card settings-modal hidden">
-        <h3 style="margin-bottom: 12px;">App Settings</h3>
-
-        <div class="input-group">
-            <label>Calculation Method</label>
-            <select id="calc-method" onchange="saveSettings()">
-                <option value="UmmAlQura">Umm Al-Qura University, Makkah (Default)</option>
-                <option value="MuslimWorldLeague">Muslim World League (MWL)</option>
-                <option value="NorthAmerica">ISNA (North America)</option>
-                <option value="Dubai">Dubai</option>
-                <option value="Qatar">Qatar</option>
-            </select>
-        </div>
-
-        <div class="input-group">
-            <label>Theme Palette</label>
-            <select id="theme-select" onchange="changeTheme(this.value)">
-                <option value="emerald">Emerald Mosque</option>
-                <option value="midnight">Midnight Blue</option>
-                <option value="desert">Desert Gold</option>
-                <option value="sunset">Sunset Glow</option>
-            </select>
-        </div>
-
-        <button class="btn-primary" onclick="toggleSettings()">Save &amp; Close</button>
+    <div class="check-row">
+      <input type="checkbox" id="lookup-city" />
+      <label for="lookup-city">Look up city name (sends coordinates to OpenStreetMap Nominatim)</label>
     </div>
 
-    <script>
-        const KAABA_LAT = 21.4225;
-        const KAABA_LNG = 39.8262;
+    <div class="input-group">
+      <label for="calc-method">Calculation method</label>
+      <select id="calc-method">
+        <option value="UmmAlQura">Umm Al-Qura University, Makkah (Default)</option>
+        <option value="MuslimWorldLeague">Muslim World League (MWL)</option>
+        <option value="NorthAmerica">ISNA (North America)</option>
+        <option value="Dubai">Dubai</option>
+        <option value="Qatar">Qatar</option>
+      </select>
+    </div>
 
-        let userLat = 26.2850;
-        let userLng = 50.2084;
-        let qiblaBearing = 244.9;
+    <div class="input-group">
+      <label for="asr-method">Asr calculation</label>
+      <select id="asr-method">
+        <option value="standard">Standard (Shafi'i, Maliki, Hanbali)</option>
+        <option value="hanafi">Hanafi</option>
+      </select>
+    </div>
 
-        let currentTasbihCount = 0;
-        let currentTasbihTarget = 33;
-        let currentHeading = null;
-        let prayerDataCache = null;
-        let hasCompassStarted = false;
+    <div class="input-group">
+      <label for="theme-select">Theme palette</label>
+      <select id="theme-select">
+        <option value="emerald">Emerald Mosque</option>
+        <option value="midnight">Midnight Blue</option>
+        <option value="desert">Desert Gold</option>
+        <option value="sunset">Sunset Glow</option>
+      </select>
+    </div>
 
-        const azkarData = {
-            morning: [
-                { id: "m1", arabic: "أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له...", translation: "We have reached the morning and at this very time unto Allah belongs all sovereignty...", target: 1 },
-                { id: "m2", arabic: "اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور", translation: "O Allah, by You we leave the morning, by You we enter the evening...", target: 1 },
-                { id: "m3", arabic: "اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك...", translation: "O Allah, You are my Lord, none has the right to be worshipped except You...", target: 1 },
-                { id: "m4", arabic: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ", translation: "Glory is to Allah and praise is to Him.", target: 100 }
-            ],
-            evening: [
-                { id: "e1", arabic: "أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له...", translation: "We have reached the evening and at this very time unto Allah belongs all sovereignty...", target: 1 },
-                { id: "e2", arabic: "اللهم بك أمسينا وبك أصبحنا وبك نحيا وبك نموت وإليك المصير", translation: "O Allah, by You we enter the evening, by You we leave the morning...", target: 1 },
-                { id: "e3", arabic: "أَعوذُ بِكلِماتِ اللّهِ التّامّاتِ مِنْ شَرّ ما خلق", translation: "I seek refuge in the Perfect Words of Allah from every evil of what He has created.", target: 3 }
-            ],
-            sleep: [
-                { id: "s1", arabic: "باسمك اللهم أموت وأحيا", translation: "In Your name, O Allah, I die and I live.", target: 1 },
-                { id: "s2", arabic: "اللَّهُمَّ أسْلَمْتُ نَفْسِي إِلَيْكَ، وَفَوَّضْتُ أمْرِي إِلَيْكَ...", translation: "O Allah, I have submitted my soul to You, and entrusted my affair to You...", target: 1 }
-            ]
-        };
+    <p class="small-note">Times are shown in this device's time zone. Settings save automatically.</p>
 
-        let appState = {
-            theme: "emerald",
-            method: "UmmAlQura",
-            tasbihCount: 0,
-            tasbihTarget: 33,
-            tasbihName: "SubhanAllah",
-            juzCompleted: Array(30).fill(false),
-            azkarProgress: {}
-        };
+    <button class="btn-primary" id="close-settings-btn">Close</button>
+  </div>
 
-        function initApp() {
-            loadState();
-            renderAzkar("morning");
-            renderJuzGrid();
-            calculateZakat();
-            detectLocation();
-            initCompass();
-            checkOfflineStatus();
+  <div id="confirm-modal" class="card modal hidden" role="dialog" aria-modal="true" aria-label="Confirmation dialog">
+    <h3 id="confirm-title" style="margin-bottom: 8px;">Confirm</h3>
+    <p id="confirm-message" style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.5;">
+      Are you sure?
+    </p>
+    <div class="modal-actions">
+      <button class="muted-btn" id="confirm-cancel-btn">Cancel</button>
+      <button class="danger-btn" id="confirm-ok-btn">Confirm</button>
+    </div>
+  </div>
 
-            renderPrayerSchedule();
-            updateCountdownOnly();
+  <script>
+    "use strict";
 
-            setInterval(updateCountdownOnly, 1000);
-            setInterval(renderPrayerSchedule, 60000);
+    const KAABA_LAT = 21.4225;
+    const KAABA_LNG = 39.8262;
+    const STORAGE_KEY = "noor_prayer_state_v3";
+    const THEMES = ["emerald", "midnight", "desert", "sunset"];
+
+    const PRESETS = {
+      khobar: { label: "Al-Khobar", lat: 26.285, lng: 50.2084 },
+      dammam: { label: "Dammam", lat: 26.4207, lng: 50.0888 },
+      dhahran: { label: "Dhahran", lat: 26.2361, lng: 50.0393 },
+      riyadh: { label: "Riyadh", lat: 24.7136, lng: 46.6753 },
+      jeddah: { label: "Jeddah", lat: 21.4858, lng: 39.1925 },
+      makkah: { label: "Makkah", lat: 21.3891, lng: 39.8579 },
+      madinah: { label: "Madinah", lat: 24.4672, lng: 39.6111 }
+    };
+
+    const PRAYERS = [
+      { key: "fajr", en: "Fajr", ar: "الفجر", obligatory: true },
+      { key: "sunrise", en: "Sunrise", ar: "الشروق", obligatory: false },
+      { key: "dhuhr", en: "Dhuhr", ar: "الظهر", obligatory: true },
+      { key: "asr", en: "Asr", ar: "العصر", obligatory: true },
+      { key: "maghrib", en: "Maghrib", ar: "المغرب", obligatory: true },
+      { key: "isha", en: "Isha", ar: "العشاء", obligatory: true }
+    ];
+
+    const DHIKRS = [
+      { name: "SubhanAllah", ar: "سُبْحَانَ اللَّهِ", target: 33 },
+      { name: "Alhamdulillah", ar: "الْحَمْدُ لِلَّهِ", target: 33 },
+      { name: "Allahu Akbar", ar: "اللَّهُ أَكْبَرُ", target: 34 }
+    ];
+
+    const AYAT_KURSI = {
+      ar: "اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ",
+      en: "Ayat al-Kursi (Qur'an 2:255): Allah, there is no deity except Him, the Ever-Living, the Sustainer of all existence..."
+    };
+
+    const SURAHS = [
+      {
+        sid: "ikhlas",
+        ref: "Qur'an 112",
+        en: "Surah al-Ikhlas: Say, He is Allah, the One...",
+        ar: "قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ"
+      },
+      {
+        sid: "falaq",
+        ref: "Qur'an 113",
+        en: "Surah al-Falaq: Say, I seek refuge in the Lord of daybreak...",
+        ar: "قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِنْ شَرِّ مَا خَلَقَ ۝ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ"
+      },
+      {
+        sid: "nas",
+        ref: "Qur'an 114",
+        en: "Surah an-Nas: Say, I seek refuge in the Lord of mankind...",
+        ar: "قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ"
+      }
+    ];
+
+    const SAYYID_ISTIGHFAR = {
+      ar: "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ",
+      en: "O Allah, You are my Lord; none has the right to be worshipped but You. You created me and I am Your servant, and I keep Your covenant and promise as best I can. I seek refuge in You from the evil I have done. I acknowledge Your favor upon me and I acknowledge my sin, so forgive me, for none forgives sins but You."
+    };
+
+    const BISMILLAH_LA_YADURRU = {
+      ar: "بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",
+      en: "In the name of Allah, with whose name nothing on earth or in heaven can cause harm, and He is the All-Hearing, All-Knowing."
+    };
+
+    const RADITU = {
+      ar: "رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ ﷺ نَبِيًّا",
+      en: "I am pleased with Allah as my Lord, Islam as my religion, and Muhammad ﷺ as my Prophet."
+    };
+
+    const SUBHANALLAH_BIHAMDIHI = {
+      ar: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
+      en: "Glory is to Allah and praise is to Him."
+    };
+
+    const LA_ILAHA = {
+      ar: "لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+      en: "None has the right to be worshipped but Allah alone, without partner. His is the dominion and His is the praise, and He has power over all things."
+    };
+
+    function surahCards(prefix, ref) {
+      return SURAHS.map((s) => ({
+        id: prefix + "_" + s.sid,
+        ar: s.ar,
+        en: s.en,
+        ref: ref + " · " + s.ref + " · ×3",
+        target: 3
+      }));
+    }
+
+    const azkarData = {
+      morning: [
+        { id: "m_kursi", ar: AYAT_KURSI.ar, en: AYAT_KURSI.en, ref: "Qur'an 2:255 · Hisn al-Muslim", target: 1 },
+        ...surahCards("m", "Hisn al-Muslim"),
+        {
+          id: "m_asbahna",
+          ar: "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+          en: "We have reached the morning and the dominion belongs to Allah, and all praise is for Allah. None has the right to be worshipped but Allah alone, without partner. His is the dominion and His is the praise, and He has power over all things. (First part of the supplication.)",
+          ref: "Muslim · Hisn al-Muslim",
+          target: 1
+        },
+        {
+          id: "m_bika",
+          ar: "اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ",
+          en: "O Allah, by You we enter the morning and by You we enter the evening; by You we live and by You we die, and to You is the resurrection.",
+          ref: "al-Tirmidhi · Hisn al-Muslim",
+          target: 1
+        },
+        { id: "m_sayyid", ar: SAYYID_ISTIGHFAR.ar, en: SAYYID_ISTIGHFAR.en, ref: "al-Bukhari · Hisn al-Muslim", target: 1 },
+        { id: "m_raditu", ar: RADITU.ar, en: RADITU.en, ref: "Hisn al-Muslim · ×3", target: 3 },
+        { id: "m_yadurru", ar: BISMILLAH_LA_YADURRU.ar, en: BISMILLAH_LA_YADURRU.en, ref: "Hisn al-Muslim · ×3", target: 3 },
+        { id: "m_subhan", ar: SUBHANALLAH_BIHAMDIHI.ar, en: SUBHANALLAH_BIHAMDIHI.en, ref: "Muslim · Hisn al-Muslim · ×100", target: 100 },
+        { id: "m_laila", ar: LA_ILAHA.ar, en: LA_ILAHA.en, ref: "Hisn al-Muslim · ×10", target: 10 }
+      ],
+      evening: [
+        { id: "e_kursi", ar: AYAT_KURSI.ar, en: AYAT_KURSI.en, ref: "Qur'an 2:255 · Hisn al-Muslim", target: 1 },
+        ...surahCards("e", "Hisn al-Muslim"),
+        {
+          id: "e_amsayna",
+          ar: "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+          en: "We have reached the evening and the dominion belongs to Allah, and all praise is for Allah. None has the right to be worshipped but Allah alone, without partner. His is the dominion and His is the praise, and He has power over all things. (First part of the supplication.)",
+          ref: "Muslim · Hisn al-Muslim",
+          target: 1
+        },
+        {
+          id: "e_bika",
+          ar: "اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ",
+          en: "O Allah, by You we enter the evening and by You we enter the morning; by You we live and by You we die, and to You is the final return.",
+          ref: "al-Tirmidhi · Hisn al-Muslim",
+          target: 1
+        },
+        { id: "e_sayyid", ar: SAYYID_ISTIGHFAR.ar, en: SAYYID_ISTIGHFAR.en, ref: "al-Bukhari · Hisn al-Muslim", target: 1 },
+        {
+          id: "e_kalimat",
+          ar: "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",
+          en: "I seek refuge in the perfect words of Allah from the evil of what He has created.",
+          ref: "Hisn al-Muslim · ×3",
+          target: 3
+        },
+        { id: "e_raditu", ar: RADITU.ar, en: RADITU.en, ref: "Hisn al-Muslim · ×3", target: 3 },
+        { id: "e_yadurru", ar: BISMILLAH_LA_YADURRU.ar, en: BISMILLAH_LA_YADURRU.en, ref: "Hisn al-Muslim · ×3", target: 3 },
+        { id: "e_subhan", ar: SUBHANALLAH_BIHAMDIHI.ar, en: SUBHANALLAH_BIHAMDIHI.en, ref: "Muslim · Hisn al-Muslim · ×100", target: 100 },
+        { id: "e_laila", ar: LA_ILAHA.ar, en: LA_ILAHA.en, ref: "Hisn al-Muslim · ×10", target: 10 }
+      ],
+      sleep: [
+        {
+          id: "s_bismika",
+          ar: "بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",
+          en: "In Your name, O Allah, I die and I live.",
+          ref: "al-Bukhari · Hisn al-Muslim",
+          target: 1
+        },
+        { id: "s_kursi", ar: AYAT_KURSI.ar, en: AYAT_KURSI.en, ref: "Qur'an 2:255 · Hisn al-Muslim", target: 1 },
+        ...SURAHS.map((s) => ({
+          id: "s_" + s.sid,
+          ar: s.ar,
+          en: s.en + " (Recite, blow into your hands and wipe over your body; repeat 3 times.)",
+          ref: "al-Bukhari · " + s.ref + " · ×3",
+          target: 3
+        })),
+        {
+          id: "s_aslamtu",
+          ar: "اللَّهُمَّ أَسْلَمْتُ نَفْسِي إِلَيْكَ، وَفَوَّضْتُ أَمْرِي إِلَيْكَ، وَوَجَّهْتُ وَجْهِي إِلَيْكَ، وَأَلْجَأْتُ ظَهْرِي إِلَيْكَ، رَغْبَةً وَرَهْبَةً إِلَيْكَ، لَا مَلْجَأَ وَلَا مَنْجَا مِنْكَ إِلَّا إِلَيْكَ، آمَنْتُ بِكِتَابِكَ الَّذِي أَنْزَلْتَ، وَبِنَبِيِّكَ الَّذِي أَرْسَلْتَ",
+          en: "O Allah, I submit myself to You, entrust my affairs to You, turn my face to You, and rely on You, in hope and in fear of You. There is no refuge or escape from You except to You. I believe in Your Book which You revealed and in Your Prophet whom You sent.",
+          ref: "al-Bukhari and Muslim · Hisn al-Muslim",
+          target: 1
+        }
+      ]
+    };
+
+    function defaultState() {
+      return {
+        theme: "emerald",
+        method: "UmmAlQura",
+        asr: "standard",
+        locMode: "auto",
+        preset: "khobar",
+        customLat: "",
+        customLng: "",
+        lookupCity: true,
+        lastFix: null,
+        tasbihIndex: 0,
+        tasbihCount: 0,
+        juzCompleted: Array(30).fill(false),
+        azkarDate: "",
+        azkarProgress: {},
+        goldPrice: "",
+        silverPrice: "",
+        nisabBasis: "gold"
+      };
+    }
+
+    let state = defaultState();
+    let tickTimer = null;
+    let currentAzkarCat = "morning";
+    let scheduleCache = { key: "", today: null, tomorrow: null };
+    let renderedKey = "";
+    let hijriKey = "";
+    let loc = {
+      lat: PRESETS.khobar.lat,
+      lng: PRESETS.khobar.lng,
+      label: "Al-Khobar, Saudi Arabia",
+      source: "default",
+      note: ""
+    };
+    let qiblaBearing = 244.9;
+    let roseAngle = 0;
+    let wasAligned = false;
+    let sensorActive = false;
+    let compassListening = false;
+    let lastStatusText = "";
+    let confirmResolver = null;
+
+    const $ = (id) => document.getElementById(id);
+
+    function todayKey(d = new Date()) {
+      return (
+        d.getFullYear() +
+        "-" +
+        String(d.getMonth() + 1).padStart(2, "0") +
+        "-" +
+        String(d.getDate()).padStart(2, "0")
+      );
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {}
+    }
+
+    function loadState() {
+      let saved = null;
+      try {
+        saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      } catch (e) {}
+
+      state = Object.assign(defaultState(), saved && typeof saved === "object" ? saved : {});
+      if (!THEMES.includes(state.theme)) state.theme = "emerald";
+      if (!Array.isArray(state.juzCompleted) || state.juzCompleted.length !== 30) {
+        state.juzCompleted = Array(30).fill(false);
+      }
+      if (!state.azkarProgress || typeof state.azkarProgress !== "object") {
+        state.azkarProgress = {};
+      }
+      if (!(state.tasbihIndex >= 0 && state.tasbihIndex < DHIKRS.length)) {
+        state.tasbihIndex = 0;
+      }
+      if (state.azkarDate !== todayKey()) {
+        state.azkarDate = todayKey();
+        state.azkarProgress = {};
+      }
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function buildPresetOptions() {
+      $("loc-preset").innerHTML = Object.keys(PRESETS)
+        .map((k) => `<option value="${escapeHtml(k)}">${escapeHtml(PRESETS[k].label)}</option>`)
+        .join("");
+    }
+
+    function syncSettingsUI() {
+      $("theme-select").value = state.theme;
+      $("calc-method").value = state.method;
+      $("asr-method").value = state.asr;
+      $("loc-mode").value = state.locMode;
+      $("loc-preset").value = state.preset;
+      $("loc-lat").value = state.customLat;
+      $("loc-lng").value = state.customLng;
+      $("lookup-city").checked = !!state.lookupCity;
+      toggleLocFields();
+    }
+
+    function syncZakatUI() {
+      $("zakat-gold-price").value = state.goldPrice;
+      $("zakat-silver-price").value = state.silverPrice;
+      $("zakat-basis").value = state.nisabBasis;
+    }
+
+    function toggleLocFields() {
+      $("loc-preset-group").classList.toggle("hidden", $("loc-mode").value !== "preset");
+      $("loc-custom-group").classList.toggle("hidden", $("loc-mode").value !== "custom");
+    }
+
+    function openSettings() {
+      $("overlay").classList.remove("hidden");
+      $("settings-modal").classList.remove("hidden");
+      $("confirm-modal").classList.add("hidden");
+    }
+
+    function closeSettings() {
+      $("overlay").classList.add("hidden");
+      $("settings-modal").classList.add("hidden");
+    }
+
+    function openConfirm(title, message) {
+      $("confirm-title").textContent = title;
+      $("confirm-message").textContent = message;
+      $("overlay").classList.remove("hidden");
+      $("settings-modal").classList.add("hidden");
+      $("confirm-modal").classList.remove("hidden");
+
+      return new Promise((resolve) => {
+        confirmResolver = resolve;
+      });
+    }
+
+    function closeConfirm(result) {
+      $("confirm-modal").classList.add("hidden");
+      $("overlay").classList.add("hidden");
+      if (confirmResolver) {
+        confirmResolver(result);
+        confirmResolver = null;
+      }
+    }
+
+    function changeTheme(name) {
+      if (!THEMES.includes(name)) name = "emerald";
+      state.theme = name;
+      document.body.setAttribute("data-theme", name);
+      $("theme-select").value = name;
+      saveState();
+    }
+
+    function cycleTheme() {
+      const next = THEMES[(THEMES.indexOf(state.theme) + 1) % THEMES.length];
+      changeTheme(next);
+    }
+
+    function onMethodChange() {
+      state.method = $("calc-method").value;
+      state.asr = $("asr-method").value;
+      saveState();
+      scheduleCache.key = "";
+      renderedKey = "";
+      tick();
+    }
+
+    function setLocation(lat, lng, label, source, note = "") {
+      loc = { lat, lng, label, source, note };
+      qiblaBearing = calculateQibla(lat, lng);
+      scheduleCache.key = "";
+      renderedKey = "";
+      $("qibla-bearing-text").textContent = "Bearing: " + qiblaBearing.toFixed(1) + "°";
+      $("compass-needle").style.transform = "rotate(" + qiblaBearing + "deg)";
+      updateLocationLabel();
+      updateCompassIdleText();
+      tick();
+    }
+
+    function updateLocationLabel() {
+      let text = loc.label;
+      if (loc.source === "default") text += " (default)";
+      else if (loc.source === "cached") text += " (last known)";
+      if (loc.note) text += " · " + loc.note;
+      $("location-label").textContent = text;
+    }
+
+    function applyLocation() {
+      if (state.locMode === "preset") {
+        const p = PRESETS[state.preset] || PRESETS.khobar;
+        setLocation(p.lat, p.lng, p.label + ", Saudi Arabia", "manual");
+      } else if (state.locMode === "custom") {
+        const lat = parseFloat(state.customLat);
+        const lng = parseFloat(state.customLng);
+        if (isFinite(lat) && isFinite(lng) && Math.abs(lat) <= 90 && Math.abs(lng) <= 180) {
+          setLocation(lat, lng, "Lat " + lat.toFixed(3) + ", Lng " + lng.toFixed(3), "manual");
+        } else {
+          setLocation(
+            PRESETS.khobar.lat,
+            PRESETS.khobar.lng,
+            "Al-Khobar, Saudi Arabia",
+            "default",
+            "enter valid coordinates in Settings"
+          );
+        }
+      } else {
+        if (state.lastFix) {
+          setLocation(state.lastFix.lat, state.lastFix.lng, state.lastFix.label, "cached");
+        } else {
+          setLocation(PRESETS.khobar.lat, PRESETS.khobar.lng, "Al-Khobar, Saudi Arabia", "default");
+        }
+        requestGps();
+      }
+    }
+
+    function onLocationChange() {
+      state.locMode = $("loc-mode").value;
+      state.preset = $("loc-preset").value;
+      state.customLat = $("loc-lat").value;
+      state.customLng = $("loc-lng").value;
+      state.lookupCity = $("lookup-city").checked;
+      saveState();
+      toggleLocFields();
+      applyLocation();
+    }
+
+    function requestGps() {
+      if (!("geolocation" in navigator)) {
+        loc.note = "GPS not supported";
+        updateLocationLabel();
+        return;
+      }
+      if (!window.isSecureContext) {
+        loc.note = "GPS needs HTTPS";
+        updateLocationLabel();
+        return;
+      }
+
+      loc.note = "locating...";
+      updateLocationLabel();
+
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const lat = pos.coords.latitude;
+          const lng = pos.coords.longitude;
+          const label = "Lat " + lat.toFixed(2) + ", Lng " + lng.toFixed(2);
+          state.lastFix = { lat, lng, label };
+          saveState();
+          setLocation(lat, lng, label, "gps");
+          if (state.lookupCity && navigator.onLine) reverseGeocode(lat, lng);
+        },
+        () => {
+          loc.note = "GPS unavailable";
+          updateLocationLabel();
+        },
+        { timeout: 8000, maximumAge: 600000, enableHighAccuracy: true }
+      );
+    }
+
+    async function reverseGeocode(lat, lng) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4000);
+
+        const res = await fetch(
+          "https://nominatim.openstreetmap.org/reverse?format=json&zoom=10&accept-language=en&lat=" +
+            encodeURIComponent(lat) +
+            "&lon=" +
+            encodeURIComponent(lng),
+          { signal: controller.signal, headers: { Accept: "application/json" } }
+        );
+
+        clearTimeout(timeoutId);
+        if (!res.ok) throw new Error("geocode failed");
+
+        const data = await res.json();
+        const a = data.address || {};
+        const city = a.city || a.town || a.village || a.state || "Current location";
+        const label = a.country ? city + ", " + a.country : city;
+
+        if (loc.source === "gps" && loc.lat === lat && loc.lng === lng) {
+          loc.label = label;
+          state.lastFix = { lat, lng, label };
+          saveState();
+          updateLocationLabel();
+        }
+      } catch (e) {}
+    }
+
+    function calculateQibla(lat, lng) {
+      const phi1 = (lat * Math.PI) / 180;
+      const phi2 = (KAABA_LAT * Math.PI) / 180;
+      const deltaLambda = ((KAABA_LNG - lng) * Math.PI) / 180;
+      const y = Math.sin(deltaLambda) * Math.cos(phi2);
+      const x =
+        Math.cos(phi1) * Math.sin(phi2) -
+        Math.sin(phi1) * Math.cos(phi2) * Math.cos(deltaLambda);
+      const theta = (Math.atan2(y, x) * 180) / Math.PI;
+      return (theta + 360) % 360;
+    }
+
+    function getSchedule(now) {
+      if (typeof adhan === "undefined") return null;
+
+      const key = [
+        todayKey(now),
+        loc.lat.toFixed(4),
+        loc.lng.toFixed(4),
+        state.method,
+        state.asr
+      ].join("|");
+
+      if (scheduleCache.key === key) return scheduleCache;
+
+      const coords = new adhan.Coordinates(loc.lat, loc.lng);
+      const factory = adhan.CalculationMethod[state.method] || adhan.CalculationMethod.UmmAlQura;
+      const params = factory.call(adhan.CalculationMethod);
+      params.madhab = state.asr === "hanafi" ? adhan.Madhab.Hanafi : adhan.Madhab.Shafi;
+
+      const todayDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0, 0);
+      const tomorrowDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 12, 0, 0);
+
+      scheduleCache = {
+        key,
+        today: new adhan.PrayerTimes(coords, todayDate, params),
+        tomorrow: new adhan.PrayerTimes(coords, tomorrowDate, params)
+      };
+
+      return scheduleCache;
+    }
+
+    function fmtTime(d) {
+      return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    }
+
+    function updateHijri(now) {
+      const k = todayKey(now);
+      if (k === hijriKey) return;
+      hijriKey = k;
+      try {
+        $("hijri-date").textContent = new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", {
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        }).format(now);
+      } catch (e) {
+        $("hijri-date").textContent = "";
+      }
+    }
+
+    function tick() {
+      const now = new Date();
+      updateHijri(now);
+
+      const sch = getSchedule(now);
+      if (!sch) {
+        const failed = window.adhanLoadFailed === true || typeof adhan === "undefined";
+        $("lib-banner").classList.toggle("hidden", !failed);
+        $("countdown-timer").textContent = "--:--:--";
+        $("next-prayer-title").textContent = failed ? "Prayer times unavailable" : "Loading...";
+        $("next-prayer-sub").textContent = "";
+        $("prayer-list").innerHTML = "";
+        return;
+      }
+
+      $("lib-banner").classList.add("hidden");
+
+      const entries = PRAYERS.map((p) => ({ ...p, time: sch.today[p.key] }));
+      let next = entries.find((p) => p.obligatory && p.time > now);
+      let isTomorrow = false;
+
+      if (!next) {
+        next = { ...PRAYERS[0], time: sch.tomorrow.fajr };
+        isTomorrow = true;
+      }
+
+      const diff = Math.max(0, next.time - now);
+      const hrs = Math.floor(diff / 3600000);
+      const mins = Math.floor((diff / 60000) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+
+      $("countdown-timer").textContent =
+        String(hrs).padStart(2, "0") +
+        ":" +
+        String(mins).padStart(2, "0") +
+        ":" +
+        String(secs).padStart(2, "0");
+
+      $("next-prayer-title").textContent =
+        next.en + " · " + next.ar + (isTomorrow ? " (tomorrow)" : "");
+
+      $("next-prayer-sub").textContent = "at " + fmtTime(next.time);
+
+      const rk = sch.key + "|" + next.key + "|" + isTomorrow;
+      if (rk !== renderedKey) {
+        renderedKey = rk;
+
+        $("prayer-list").innerHTML = entries
+          .map((p) => {
+            const isNextToday = !isTomorrow && p.key === next.key;
+            const isTomorrowFajr = isTomorrow && p.key === "fajr";
+            const isActive = isNextToday || isTomorrowFajr;
+            const tag = isNextToday
+              ? '<span class="tag">Next</span>'
+              : isTomorrowFajr
+              ? '<span class="tag">Tomorrow</span>'
+              : "";
+
+            return (
+              '<div class="prayer-item ' + (isActive ? "active" : "") + '">' +
+              "<span>" +
+              escapeHtml(p.en) +
+              '<span class="ar-name">' +
+              escapeHtml(p.ar) +
+              "</span>" +
+              tag +
+              "</span>" +
+              '<span class="prayer-time">' +
+              escapeHtml(fmtTime(p.time)) +
+              "</span></div>"
+            );
+          })
+          .join("");
+      }
+    }
+
+    function shortest(a, b) {
+      return ((((b - a) % 360) + 360 + 180) % 360) - 180;
+    }
+
+    function setStatus(text) {
+      if (text !== lastStatusText) {
+        lastStatusText = text;
+        $("haptic-status").textContent = text;
+      }
+    }
+
+    function updateCompassIdleText() {
+      if (!sensorActive) setStatus("Qibla is " + qiblaBearing.toFixed(1) + "° from North");
+    }
+
+    function initCompass() {
+      $("compass-needle").style.transform = "rotate(" + qiblaBearing + "deg)";
+      if (
+        typeof DeviceOrientationEvent !== "undefined" &&
+        typeof DeviceOrientationEvent.requestPermission === "function"
+      ) {
+        $("ios-permission-btn").classList.remove("hidden");
+        setStatus('Tap "Enable Compass Sensor" to use your phone as a compass');
+      } else {
+        startCompassListener();
+      }
+    }
+
+    function requestIOSCompass() {
+      DeviceOrientationEvent.requestPermission()
+        .then((r) => {
+          if (r === "granted") {
+            $("ios-permission-btn").classList.add("hidden");
+            startCompassListener();
+          } else {
+            setStatus("Compass permission denied. Qibla is " + qiblaBearing.toFixed(1) + "° from North");
+          }
+        })
+        .catch(() => {
+          setStatus("Compass needs HTTPS. Qibla is " + qiblaBearing.toFixed(1) + "° from North");
+        });
+    }
+
+    function startCompassListener() {
+      if (compassListening || typeof window.addEventListener !== "function") return;
+      compassListening = true;
+
+      const evName =
+        "ondeviceorientationabsolute" in window
+          ? "deviceorientationabsolute"
+          : "deviceorientation";
+
+      window.addEventListener(evName, onOrientation, true);
+
+      setStatus("Waiting for compass sensor...");
+      setTimeout(() => {
+        if (!sensorActive) {
+          setStatus("No compass sensor detected. Qibla is " + qiblaBearing.toFixed(1) + "° from North");
+        }
+      }, 3000);
+    }
+
+    function onOrientation(ev) {
+      let heading = null;
+
+      if (typeof ev.webkitCompassHeading === "number" && !isNaN(ev.webkitCompassHeading)) {
+        heading = ev.webkitCompassHeading;
+      } else if (typeof ev.alpha === "number" && !isNaN(ev.alpha)) {
+        if (ev.absolute === true || ev.type === "deviceorientationabsolute") {
+          heading = (360 - ev.alpha) % 360;
+        } else {
+          return;
+        }
+      }
+
+      if (heading === null) return;
+
+      sensorActive = true;
+      roseAngle += shortest(roseAngle, -heading);
+      $("compass-rose").style.transform = "rotate(" + roseAngle + "deg)";
+
+      const delta = shortest(heading, qiblaBearing);
+      const aligned = Math.abs(delta) <= 3;
+
+      if (aligned && !wasAligned && "vibrate" in navigator) {
+        try {
+          navigator.vibrate(30);
+        } catch (e) {}
+      }
+
+      wasAligned = aligned;
+
+      if (aligned) {
+        setStatus("Aligned with Qibla ✔");
+      } else {
+        setStatus("Turn " + (delta > 0 ? "right" : "left") + " " + Math.round(Math.abs(delta)) + "°");
+      }
+    }
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll(".tab-content").forEach((el) => el.classList.add("hidden"));
+      document.querySelectorAll("#main-nav-tabs .tab-btn").forEach((el) => el.classList.remove("active"));
+      $("tab-" + tabId).classList.remove("hidden");
+      if (btn) btn.classList.add("active");
+    }
+
+    function renderAzkar(category) {
+      currentAzkarCat = category;
+      const list = azkarData[category] || [];
+      const container = $("azkar-container");
+      container.innerHTML = "";
+
+      list.forEach((z) => {
+        const current = state.azkarProgress[z.id] || 0;
+        const done = current >= z.target;
+
+        const card = document.createElement("div");
+        card.className = "azkar-card";
+
+        const ref = document.createElement("div");
+        ref.className = "azkar-ref";
+        ref.textContent = z.ref;
+
+        const ar = document.createElement("div");
+        ar.className = "azkar-arabic";
+        ar.setAttribute("lang", "ar");
+        ar.textContent = z.ar;
+
+        const en = document.createElement("div");
+        en.className = "azkar-translation";
+        en.textContent = z.en;
+
+        const footer = document.createElement("div");
+        footer.className = "azkar-footer";
+
+        const progress = document.createElement("span");
+        progress.textContent = "Progress: " + current + " / " + z.target;
+
+        const btn = document.createElement("button");
+        btn.className = "btn-primary";
+        btn.style.width = "auto";
+        btn.style.padding = "6px 12px";
+        btn.style.margin = "0";
+        btn.disabled = done;
+        btn.textContent = done ? "Completed ✔" : "Read (+1)";
+        btn.addEventListener("click", () => incrementAzkar(z.id));
+
+        footer.appendChild(progress);
+        footer.appendChild(btn);
+
+        card.appendChild(ref);
+        card.appendChild(ar);
+        card.appendChild(en);
+        card.appendChild(footer);
+
+        container.appendChild(card);
+      });
+    }
+
+    function filterAzkar(category, btn) {
+      document.querySelectorAll("#azkar-sub-tabs .tab-btn").forEach((b) => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+      renderAzkar(category);
+    }
+
+    function incrementAzkar(id) {
+      const z = (azkarData[currentAzkarCat] || []).find((x) => x.id === id);
+      if (!z) return;
+
+      const cur = state.azkarProgress[id] || 0;
+      if (cur >= z.target) return;
+
+      state.azkarProgress[id] = cur + 1;
+      saveState();
+      renderAzkar(currentAzkarCat);
+
+      if (cur + 1 >= z.target && "vibrate" in navigator) {
+        try {
+          navigator.vibrate(50);
+        } catch (e) {}
+      }
+    }
+
+    function resetAzkarToday() {
+      state.azkarProgress = {};
+      state.azkarDate = todayKey();
+      saveState();
+      renderAzkar(currentAzkarCat);
+    }
+
+    function renderTasbih() {
+      const d = DHIKRS[state.tasbihIndex];
+      $("dhikr-title").textContent = d.name;
+      $("dhikr-ar").textContent = d.ar;
+      $("tasbih-display").textContent = state.tasbihCount;
+      $("tasbih-target").textContent = "Target: " + d.target;
+      $("tasbih-msg").textContent = state.tasbihCount >= d.target ? "✔ Target reached" : "";
+
+      document.querySelectorAll(".dhikr-btn").forEach((b, i) => {
+        b.classList.toggle("active", i === state.tasbihIndex);
+      });
+    }
+
+    function setDhikr(i) {
+      state.tasbihIndex = i;
+      state.tasbihCount = 0;
+      saveState();
+      renderTasbih();
+    }
+
+    function incrementTasbih() {
+      const idx = state.tasbihIndex;
+      const d = DHIKRS[idx];
+      if (state.tasbihCount >= d.target) return;
+
+      state.tasbihCount++;
+      saveState();
+      $("tasbih-display").textContent = state.tasbihCount;
+
+      if (state.tasbihCount >= d.target) {
+        if ("vibrate" in navigator) {
+          try {
+            navigator.vibrate([100, 50, 100]);
+          } catch (e) {}
         }
 
-        function safeSetStorage(key, value) {
-            try {
-                localStorage.setItem(key, value);
-            } catch (e) {}
+        if (idx < DHIKRS.length - 1) {
+          $("tasbih-msg").textContent = "✔ Done. Moving to " + DHIKRS[idx + 1].name + "...";
+          setTimeout(() => {
+            if (state.tasbihIndex === idx) setDhikr(idx + 1);
+          }, 900);
+        } else {
+          $("tasbih-msg").textContent = "✔ All three completed. Reset to start again.";
         }
+      }
+    }
 
-        function safeGetStorage(key) {
-            try {
-                return localStorage.getItem(key);
-            } catch (e) {
-                return null;
-            }
+    function resetTasbih() {
+      state.tasbihCount = 0;
+      saveState();
+      renderTasbih();
+    }
+
+    function renderJuzGrid() {
+      const grid = $("juz-grid");
+      grid.innerHTML = "";
+      let done = 0;
+
+      for (let i = 0; i < 30; i++) {
+        const isDone = !!state.juzCompleted[i];
+        if (isDone) done++;
+
+        const cell = document.createElement("div");
+        cell.className = "juz-cell" + (isDone ? " done" : "");
+        cell.setAttribute("role", "button");
+        cell.setAttribute("tabindex", "0");
+        cell.setAttribute("aria-pressed", String(isDone));
+        cell.textContent = String(i + 1);
+
+        cell.addEventListener("click", () => toggleJuz(i));
+        cell.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggleJuz(i);
+          }
+        });
+
+        grid.appendChild(cell);
+      }
+
+      const pct = Math.round((done / 30) * 100);
+      $("quran-progress-bar").style.width = pct + "%";
+      $("quran-progress-text").textContent = done + " / 30 Juz Completed (" + pct + "%)";
+    }
+
+    function toggleJuz(i) {
+      state.juzCompleted[i] = !state.juzCompleted[i];
+      saveState();
+      renderJuzGrid();
+    }
+
+    async function resetKhatm() {
+      const ok = await openConfirm("Start a new Khatm?", "This will clear all saved Juz progress.");
+      if (!ok) return;
+      state.juzCompleted = Array(30).fill(false);
+      saveState();
+      renderJuzGrid();
+    }
+
+    function numVal(id) {
+      const v = parseFloat($(id).value);
+      return isFinite(v) && v > 0 ? v : 0;
+    }
+
+    function fmtSar(n) {
+      return n.toLocaleString(undefined, { maximumFractionDigits: 2 }) + " SAR";
+    }
+
+    function calculateZakat() {
+      state.goldPrice = $("zakat-gold-price").value;
+      state.silverPrice = $("zakat-silver-price").value;
+      state.nisabBasis = $("zakat-basis").value;
+      saveState();
+
+      const isGold = state.nisabBasis === "gold";
+      const price = isGold ? numVal("zakat-gold-price") : numVal("zakat-silver-price");
+      const grams = isGold ? 85 : 595;
+      const nisab = price * grams;
+
+      $("zakat-nisab-label").textContent =
+        "Nisab (" + grams + " g " + (isGold ? "gold" : "silver") + ")";
+
+      const total = Math.max(
+        0,
+        numVal("zakat-cash") +
+          numVal("zakat-gold") +
+          numVal("zakat-stocks") -
+          numVal("zakat-debt")
+      );
+
+      $("zakat-total").textContent = fmtSar(total);
+
+      const msg = $("zakat-status-msg");
+      let due = 0;
+
+      if (!price) {
+        $("zakat-nisab-val").textContent = "--";
+        msg.textContent =
+          "Enter today's " +
+          (isGold ? "gold" : "silver") +
+          " price per gram to check nisab";
+        msg.style.color = "var(--text-muted)";
+      } else {
+        $("zakat-nisab-val").textContent = fmtSar(nisab);
+
+        if (total < nisab) {
+          msg.textContent = "❌ Wealth is below nisab (zakat is not obligatory)";
+          msg.style.color = "var(--text-muted)";
+        } else if (!$("zakat-hawl").checked) {
+          msg.textContent = "⏳ Wealth meets nisab, but a lunar year (hawl) has not yet passed";
+          msg.style.color = "var(--accent)";
+        } else {
+          msg.textContent = "✅ Nisab and hawl met. Zakat is due.";
+          msg.style.color = "var(--primary)";
+          due = total * 0.025;
         }
+      }
 
-        function loadState() {
-            const saved = safeGetStorage("noor_prayer_state");
-            if (saved) {
-                try {
-                    const parsed = JSON.parse(saved);
-                    appState = {
-                        ...appState,
-                        ...parsed,
-                        juzCompleted: Array.isArray(parsed.juzCompleted) && parsed.juzCompleted.length === 30
-                            ? parsed.juzCompleted
-                            : Array(30).fill(false),
-                        azkarProgress: parsed.azkarProgress || {}
-                    };
-                } catch (e) {}
-            }
+      $("zakat-due").textContent = fmtSar(due);
+    }
 
-            document.body.setAttribute("data-theme", appState.theme || "emerald");
-            document.getElementById("theme-select").value = appState.theme || "emerald";
-            document.getElementById("calc-method").value = appState.method || "UmmAlQura";
+    function checkOfflineStatus() {
+      const banner = $("offline-banner");
+      banner.classList.toggle("hidden", navigator.onLine);
+      window.addEventListener("online", () => banner.classList.add("hidden"));
+      window.addEventListener("offline", () => banner.classList.remove("hidden"));
+    }
 
-            currentTasbihCount = appState.tasbihCount || 0;
-            currentTasbihTarget = appState.tasbihTarget || 33;
+    function bindEvents() {
+      $("theme-cycle-btn").addEventListener("click", cycleTheme);
+      $("open-settings-btn").addEventListener("click", openSettings);
+      $("close-settings-btn").addEventListener("click", closeSettings);
+      $("overlay").addEventListener("click", () => {
+        closeSettings();
+        closeConfirm(false);
+      });
 
-            document.getElementById("tasbih-display").innerText = currentTasbihCount;
-            document.getElementById("tasbih-target").innerText = `Target: ${currentTasbihTarget}`;
-            document.getElementById("dhikr-title").innerText = appState.tasbihName || "SubhanAllah";
+      $("confirm-cancel-btn").addEventListener("click", () => closeConfirm(false));
+      $("confirm-ok-btn").addEventListener("click", () => closeConfirm(true));
+
+      $("ios-permission-btn").addEventListener("click", requestIOSCompass);
+      $("reset-azkar-btn").addEventListener("click", resetAzkarToday);
+      $("tasbih-increment-btn").addEventListener("click", incrementTasbih);
+      $("tasbih-reset-btn").addEventListener("click", resetTasbih);
+      $("reset-khatm-btn").addEventListener("click", resetKhatm);
+
+      document.querySelectorAll("#main-nav-tabs .tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => switchTab(btn.dataset.tab, btn));
+      });
+
+      document.querySelectorAll("#azkar-sub-tabs .tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => filterAzkar(btn.dataset.azkar, btn));
+      });
+
+      document.querySelectorAll(".dhikr-btn").forEach((btn) => {
+        btn.addEventListener("click", () => setDhikr(Number(btn.dataset.dhikr)));
+      });
+
+      ["zakat-basis", "zakat-gold-price", "zakat-silver-price", "zakat-cash", "zakat-gold", "zakat-stocks", "zakat-debt", "zakat-hawl"]
+        .forEach((id) => $(id).addEventListener("input", calculateZakat));
+
+      $("theme-select").addEventListener("change", (e) => changeTheme(e.target.value));
+      $("calc-method").addEventListener("change", onMethodChange);
+      $("asr-method").addEventListener("change", onMethodChange);
+
+      ["loc-mode", "loc-preset", "loc-lat", "loc-lng", "lookup-city"].forEach((id) => {
+        $(id).addEventListener("change", onLocationChange);
+        $(id).addEventListener("input", () => {
+          if (id === "loc-lat" || id === "loc-lng") onLocationChange();
+        });
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeSettings();
+          closeConfirm(false);
         }
+      });
 
-        function saveState() {
-            safeSetStorage("noor_prayer_state", JSON.stringify(appState));
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden && state.azkarDate !== todayKey()) {
+          state.azkarDate = todayKey();
+          state.azkarProgress = {};
+          saveState();
+          renderAzkar(currentAzkarCat);
         }
-
-        function detectLocation() {
-            const locationLabel = document.getElementById("location-label");
-
-            if (navigator.geolocation && (window.location.protocol === "https:" || window.location.hostname === "localhost")) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        userLat = position.coords.latitude;
-                        userLng = position.coords.longitude;
-                        reverseGeocode(userLat, userLng);
-                        updateCalculations();
-                    },
-                    () => {
-                        locationLabel.innerText = "Default location: Al-Khobar, Saudi Arabia";
-                        updateCalculations();
-                    },
-                    { enableHighAccuracy: true, timeout: 8000, maximumAge: 300000 }
-                );
-            } else {
-                locationLabel.innerText = "Default location: Al-Khobar, Saudi Arabia";
-                updateCalculations();
-            }
-        }
-
-        async function reverseGeocode(lat, lng) {
-            const label = document.getElementById("location-label");
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 4000);
-
-                const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`, {
-                    signal: controller.signal,
-                    headers: {
-                        "Accept": "application/json"
-                    }
-                });
-
-                clearTimeout(timeoutId);
-
-                if (!res.ok) throw new Error("Reverse geocoding failed");
-
-                const data = await res.json();
-                const address = data.address || {};
-                const city = address.city || address.town || address.village || address.state || "Current Location";
-                const country = address.country || "";
-                label.innerText = country ? `${city}, ${country}` : city;
-            } catch (e) {
-                label.innerText = `Lat ${lat.toFixed(2)}, Lng ${lng.toFixed(2)}`;
-            }
-        }
-
-        function updateCalculations() {
-            qiblaBearing = calculateQibla(userLat, userLng);
-            document.getElementById("qibla-bearing-text").innerText = `Bearing: ${qiblaBearing.toFixed(1)}°`;
-            renderPrayerSchedule();
-            updateCountdownOnly();
-        }
-
-        function calculateQibla(lat, lng) {
-            const phi1 = lat * Math.PI / 180;
-            const phi2 = KAABA_LAT * Math.PI / 180;
-            const deltaLambda = (KAABA_LNG - lng) * Math.PI / 180;
-
-            const y = Math.sin(deltaLambda) * Math.cos(phi2);
-            const x = Math.cos(phi1) * Math.sin(phi2) - Math.sin(phi1) * Math.cos(phi2) * Math.cos(deltaLambda);
-
-            let theta = Math.atan2(y, x) * 180 / Math.PI;
-            return (theta + 360) % 360;
-        }
-
-        function getPrayerTimesForDate(date = new Date()) {
-            const coordinates = new adhan.Coordinates(userLat, userLng);
-            const methodName = document.getElementById("calc-method").value || "UmmAlQura";
-            const params = adhan.CalculationMethod[methodName]();
-            params.madhab = adhan.Madhab.Shafi;
-            return new adhan.PrayerTimes(coordinates, date, params);
-        }
-
-        function renderPrayerSchedule() {
-            const prayerTimes = getPrayerTimesForDate(new Date());
-            const now = new Date();
-
-            const timesList = [
-                { key: "fajr", name: "Fajr", time: prayerTimes.fajr },
-                { key: "sunrise", name: "Sunrise", time: prayerTimes.sunrise },
-                { key: "dhuhr", name: "Dhuhr", time: prayerTimes.dhuhr },
-                { key: "asr", name: "Asr", time: prayerTimes.asr },
-                { key: "maghrib", name: "Maghrib", time: prayerTimes.maghrib },
-                { key: "isha", name: "Isha", time: prayerTimes.isha }
-            ];
-
-            let nextPrayer = prayerTimes.nextPrayer(now);
-            let nextTime = prayerTimes.timeForPrayer(nextPrayer);
-
-            if (!nextPrayer || !nextTime) {
-                const tomorrow = new Date(now);
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                const tomorrowPrayerTimes = getPrayerTimesForDate(tomorrow);
-                nextPrayer = "fajr";
-                nextTime = tomorrowPrayerTimes.fajr;
-            }
-
-            prayerDataCache = { timesList, nextPrayer, nextTime };
-
-            const container = document.getElementById("prayer-list");
-            container.innerHTML = timesList.map((p) => {
-                const timeStr = p.time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-                const isActive = nextPrayer === p.key;
-                return `
-                    <div class="prayer-item ${isActive ? "active" : ""}">
-                        <span>${p.name}</span>
-                        <span class="prayer-time">${timeStr}</span>
-                    </div>
-                `;
-            }).join("");
-        }
-
-        function updateCountdownOnly() {
-            if (!prayerDataCache || !prayerDataCache.nextTime) {
-                document.getElementById("countdown-timer").innerText = "--:--:--";
-                document.getElementById("next-prayer-title").innerText = "Loading...";
-                return;
-            }
-
-            const now = new Date();
-            let diff = prayerDataCache.nextTime - now;
-
-            if (diff <= 0) {
-                renderPrayerSchedule();
-                diff = prayerDataCache.nextTime - new Date();
-            }
-
-            const hrs = Math.floor(diff / (1000 * 60 * 60));
-            const mins = Math.floor((diff / (1000 * 60)) % 60);
-            const secs = Math.floor((diff / 1000) % 60);
-
-            document.getElementById("countdown-timer").innerText =
-                `${String(Math.max(0, hrs)).padStart(2, "0")}:${String(Math.max(0, mins)).padStart(2, "0")}:${String(Math.max(0, secs)).padStart(2, "0")}`;
-            document.getElementById("next-prayer-title").innerText = capitalize(prayerDataCache.nextPrayer);
-        }
-
-        function capitalize(str) {
-            if (!str) return "";
-            return str.charAt(0).toUpperCase() + str.slice(1);
-        }
-
-        function initCompass() {
-            if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
-                document.getElementById("ios-permission-btn").classList.remove("hidden");
-                document.getElementById("haptic-status").innerText = "Tap to enable compass sensor on iPhone.";
-            } else {
-                startCompassListener();
-            }
-        }
-
-        function requestIOSCompass() {
-            if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
-                DeviceOrientationEvent.requestPermission()
-                    .then((response) => {
-                        if (response === "granted") {
-                            document.getElementById("ios-permission-btn").classList.add("hidden");
-                            startCompassListener();
-                        } else {
-                            document.getElementById("haptic-status").innerText = "Compass permission denied. Enable motion access in browser settings.";
-                        }
-                    })
-                    .catch(() => {
-                        document.getElementById("haptic-status").innerText = "Unable to enable compass permission on this device.";
-                    });
-            }
-        }
-
-        function startCompassListener() {
-            if (hasCompassStarted) return;
-            hasCompassStarted = true;
-
-            const needle = document.getElementById("compass-needle");
-            const status = document.getElementById("haptic-status");
-            const eventName = "ondeviceorientationabsolute" in window ? "deviceorientationabsolute" : "deviceorientation";
-            let lastVibrateAt = 0;
-
-            window.addEventListener(eventName, (event) => {
-                let heading = null;
-
-                if (typeof event.webkitCompassHeading === "number") {
-                    heading = event.webkitCompassHeading;
-                } else if (typeof event.alpha === "number") {
-                    heading = 360 - event.alpha;
-                }
-
-                if (heading === null || isNaN(heading)) {
-                    status.innerText = "Compass data unavailable on this device/browser.";
-                    return;
-                }
-
-                currentHeading = (heading + 360) % 360;
-
-                const relativeQibla = (qiblaBearing - currentHeading + 360) % 360;
-                needle.style.transform = `rotate(${relativeQibla}deg)`;
-
-                const delta = Math.abs(((currentHeading - qiblaBearing + 540) % 360) - 180);
-
-                if (delta < 5) {
-                    status.innerText = "Aligned with Qibla";
-                    const now = Date.now();
-                    if ("vibrate" in navigator && now - lastVibrateAt > 1500) {
-                        try {
-                            navigator.vibrate(30);
-                        } catch (e) {}
-                        lastVibrateAt = now;
-                    }
-                } else {
-                    status.innerText = `Turn ${Math.round(delta)}° to face Qibla`;
-                }
-            }, true);
-        }
-
-        function switchTab(tabId, event) {
-            document.querySelectorAll(".tab-content").forEach((el) => el.classList.add("hidden"));
-            document.querySelectorAll("#main-nav-tabs .tab-btn").forEach((el) => el.classList.remove("active"));
-            document.getElementById("tab-" + tabId).classList.remove("hidden");
-            if (event && event.target) {
-                event.target.classList.add("active");
-            }
-        }
-
-        function renderAzkar(category) {
-            const container = document.getElementById("azkar-container");
-            const list = azkarData[category] || [];
-
-            container.innerHTML = list.map((z) => {
-                const currentCount = appState.azkarProgress[z.id] || 0;
-                const isCompleted = currentCount >= z.target;
-                return `
-                    <div class="azkar-card">
-                        <div style="font-size: 0.75rem; color: var(--accent); margin-bottom: 4px;">Source: Hisn al-Muslim</div>
-                        <div class="azkar-arabic">${z.arabic}</div>
-                        <div class="azkar-translation">${z.translation}</div>
-                        <div class="azkar-footer">
-                            <span>Progress: ${currentCount} / ${z.target}</span>
-                            <button class="btn-primary" style="width: auto; padding: 6px 12px; margin: 0;" onclick="incrementAzkar('${z.id}', ${z.target}, '${category}')">
-                                ${isCompleted ? "Completed ✔" : "Read (+1)"}
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }).join("");
-        }
-
-        function filterAzkar(category, event) {
-            document.querySelectorAll("#azkar-sub-tabs .tab-btn").forEach((b) => b.classList.remove("active"));
-            if (event && event.target) event.target.classList.add("active");
-            renderAzkar(category);
-        }
-
-        function incrementAzkar(id, target, category) {
-            let current = appState.azkarProgress[id] || 0;
-            if (current < target) {
-                current++;
-                appState.azkarProgress[id] = current;
-                saveState();
-                renderAzkar(category);
-
-                if (current >= target && "vibrate" in navigator) {
-                    try {
-                        navigator.vibrate(50);
-                    } catch (e) {}
-                }
-            }
-        }
-
-        function setDhikr(name, target) {
-            appState.tasbihName = name;
-            appState.tasbihTarget = target;
-            appState.tasbihCount = 0;
-
-            currentTasbihCount = 0;
-            currentTasbihTarget = target;
-
-            document.getElementById("dhikr-title").innerText = name;
-            document.getElementById("tasbih-target").innerText = `Target: ${target}`;
-            document.getElementById("tasbih-display").innerText = 0;
-
-            saveState();
-        }
-
-        function incrementTasbih() {
-            currentTasbihCount++;
-            appState.tasbihCount = currentTasbihCount;
-
-            document.getElementById("tasbih-display").innerText = currentTasbihCount;
-            saveState();
-
-            if (currentTasbihCount >= currentTasbihTarget) {
-                if ("vibrate" in navigator) {
-                    try {
-                        navigator.vibrate([100, 50, 100]);
-                    } catch (e) {}
-                }
-            }
-        }
-
-        function resetTasbih() {
-            currentTasbihCount = 0;
-            appState.tasbihCount = 0;
-            document.getElementById("tasbih-display").innerText = 0;
-            saveState();
-        }
-
-        function renderJuzGrid() {
-            const grid = document.getElementById("juz-grid");
-            let html = "";
-            let completedCount = 0;
-
-            for (let i = 0; i < 30; i++) {
-                const isDone = !!appState.juzCompleted[i];
-                if (isDone) completedCount++;
-                html += `<div onclick="toggleJuz(${i})" class="juz-cell ${isDone ? "done" : ""}">${i + 1}</div>`;
-            }
-
-            grid.innerHTML = html;
-
-            const pct = Math.round((completedCount / 30) * 100);
-            document.getElementById("quran-progress-bar").style.width = pct + "%";
-            document.getElementById("quran-progress-text").innerText = `${completedCount} / 30 Juz Completed (${pct}%)`;
-        }
-
-        function toggleJuz(idx) {
-            appState.juzCompleted[idx] = !appState.juzCompleted[idx];
-            saveState();
-            renderJuzGrid();
-        }
-
-        function calculateZakat() {
-            const goldPrice = parseFloat(document.getElementById("zakat-gold-price").value) || 280;
-            const cash = parseFloat(document.getElementById("zakat-cash").value) || 0;
-            const gold = parseFloat(document.getElementById("zakat-gold").value) || 0;
-            const stocks = parseFloat(document.getElementById("zakat-stocks").value) || 0;
-            const debt = parseFloat(document.getElementById("zakat-debt").value) || 0;
-            const hawlPassed = document.getElementById("zakat-hawl").checked;
-
-            const nisabThreshold = goldPrice * 85;
-            document.getElementById("zakat-nisab-val").innerText = `${nisabThreshold.toLocaleString()} SAR`;
-
-            const totalWealth = Math.max(0, (cash + gold + stocks) - debt);
-            document.getElementById("zakat-total").innerText = `${totalWealth.toLocaleString()} SAR`;
-
-            const statusMsg = document.getElementById("zakat-status-msg");
-            let due = 0;
-
-            if (totalWealth < nisabThreshold) {
-                statusMsg.innerText = "❌ Wealth is below Nisab threshold (Zakat is not obligatory)";
-                statusMsg.style.color = "var(--text-muted)";
-            } else if (!hawlPassed) {
-                statusMsg.innerText = "⏳ Wealth meets Nisab, but 1 lunar year (Hawl) has not yet passed";
-                statusMsg.style.color = "var(--accent)";
-            } else {
-                statusMsg.innerText = "✅ Nisab and Hawl conditions met. Zakat is due.";
-                statusMsg.style.color = "var(--primary)";
-                due = totalWealth * 0.025;
-            }
-
-            document.getElementById("zakat-due").innerText = `${due.toLocaleString()} SAR`;
-        }
-
-        function cycleTheme() {
-            const themes = ["emerald", "midnight", "desert", "sunset"];
-            const current = appState.theme || "emerald";
-            const index = themes.indexOf(current);
-            const next = themes[(index + 1) % themes.length];
-            changeTheme(next);
-            document.getElementById("theme-select").value = next;
-        }
-
-        function toggleSettings() {
-            document.getElementById("settings-modal").classList.toggle("hidden");
-            document.getElementById("settings-backdrop").classList.toggle("hidden");
-        }
-
-        function changeTheme(themeName) {
-            appState.theme = themeName;
-            document.body.setAttribute("data-theme", themeName);
-            document.getElementById("theme-select").value = themeName;
-            saveState();
-        }
-
-        function saveSettings() {
-            appState.method = document.getElementById("calc-method").value;
-            saveState();
-            renderPrayerSchedule();
-            updateCountdownOnly();
-        }
-
-        function checkOfflineStatus() {
-            const banner = document.getElementById("offline-banner");
-
-            if (!navigator.onLine) {
-                banner.classList.remove("hidden");
-            }
-
-            window.addEventListener("online", () => banner.classList.add("hidden"));
-            window.addEventListener("offline", () => banner.classList.remove("hidden"));
-        }
-
-        window.onload = initApp;
-    </script>
+      });
+    }
+
+    function initApp() {
+      loadState();
+      document.body.setAttribute("data-theme", state.theme);
+      buildPresetOptions();
+      syncSettingsUI();
+      syncZakatUI();
+      bindEvents();
+      renderAzkar("morning");
+      renderJuzGrid();
+      renderTasbih();
+      calculateZakat();
+      applyLocation();
+      initCompass();
+      checkOfflineStatus();
+      tick();
+
+      if (tickTimer) clearInterval(tickTimer);
+      tickTimer = setInterval(tick, 1000);
+    }
+
+    window.addEventListener("DOMContentLoaded", initApp);
+  </script>
 </body>
 </html>
